@@ -1,4 +1,6 @@
-const {createDefaultConfig} = require('@open-wc/testing-karma');
+const {
+  createDefaultConfig
+} = require('@open-wc/testing-karma');
 const merge = require('deepmerge');
 
 module.exports = (config) => {
@@ -6,17 +8,21 @@ module.exports = (config) => {
     merge(createDefaultConfig(config), {
       frameworks: ['mocha', 'chai'],
       client: {
-        mocha: {ui: 'tdd'},
-      },
-      files: [
-        {
-          pattern: config.grep ? config.grep : 'build/**/*_test.js',
-          type: 'module',
+        mocha: {
+          ui: 'tdd',
         },
-      ],
+      },
+      files: [{
+        pattern: config.grep ? config.grep : 'build/**/*.spec.js',
+        type: 'module',
+      }, ],
       // See the karma-esm docs for all options
       esm: {
         nodeResolve: true,
+      },
+      coverageReporter: {
+        type: 'html',
+        dir: 'coverage/',
       },
     })
   );

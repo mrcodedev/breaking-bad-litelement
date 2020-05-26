@@ -1,0 +1,7 @@
+{
+  "name": "BreakingLitElement",
+  "short_name": "BreakingLitElement",
+  "description": "Breaking Bad App",
+  "start_url": "/",
+  "display": "standalone"
+}

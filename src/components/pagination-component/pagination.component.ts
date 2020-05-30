@@ -1,6 +1,13 @@
-import {LitElement, html, customElement, css, property} from 'lit-element';
+import {
+  LitElement,
+  html,
+  customElement,
+  css,
+  property,
+  TemplateResult,
+} from 'lit-element';
 
-//TODO: I don't know which is the proper way for JSDOC
+//TODO: I don't know which is the proper way for JSDOCS
 /**
  * @typedef {object} PageLinks
  * @property {number} PageLink.id - Array number page
@@ -154,7 +161,9 @@ export class PaginationComponent extends LitElement {
    * @return {object} Data previous page HTML
    */
   private _generatePreviousActionHTML(): object {
-    const previousAction = html`<a id="previous" @click="${this._previousPage}"
+    const previousAction: TemplateResult = html`<a
+      id="previous"
+      @click="${this._previousPage}"
       >&laquo;</a
     >`;
 
@@ -167,7 +176,9 @@ export class PaginationComponent extends LitElement {
    * @return {object} Data next page HTML
    */
   private _generateNextActionHTML(): object {
-    const nextAction = html`<a id="next" @click="${this._nextPage}"
+    const nextAction: TemplateResult = html`<a
+      id="next"
+      @click="${this._nextPage}"
       >&raquo;</a
     >`;
 
@@ -180,14 +191,16 @@ export class PaginationComponent extends LitElement {
    * @return {object} Number pages to show in HTML
    */
   private _generateLinkPagesHTML(): object[] {
-    const pagesMap = this.numberPages.map((item: PageLinks) => {
-      return html`<a
-        id="${item.id}"
-        ?active="${this._isActive(item.active)}"
-        @click="${() => this._changeActivePage(item)}"
-        >${item.page}</a
-      >`;
-    });
+    const pagesMap: TemplateResult[] = this.numberPages.map(
+      (item: PageLinks) => {
+        return html`<a
+          id="${item.id}"
+          ?active="${this._isActive(item.active)}"
+          @click="${() => this._changeActivePage(item)}"
+          >${item.page}</a
+        >`;
+      }
+    );
 
     return pagesMap;
   }
@@ -196,16 +209,16 @@ export class PaginationComponent extends LitElement {
    * Generate the data of pages in Array
    */
   private _generatePageIndexes(): void {
-    let numberPages = this.numberElements / this.pageLimit;
+    let numberPages: number = this.numberElements / this.pageLimit;
 
     numberPages =
       numberPages % 1 === 0 ? numberPages : Math.floor(numberPages) + 1;
 
-    const result = Array.from(
+    const result: PageLinks[] = Array.from(
       {
         length: numberPages,
       },
-      (element, index) => {
+      (element: undefined, index: number) => {
         return {
           id: index,
           page: index + 1,
@@ -263,8 +276,8 @@ export class PaginationComponent extends LitElement {
   private _updateDataPages(dataSection?: DataSection): void {
     this.numberElements = this.paginationData.length;
     this.dataPage = [];
-    let firstElement;
-    let lastElement;
+    let firstElement: number;
+    let lastElement: number;
 
     if (
       dataSection !== 'change-active-page' &&
@@ -282,7 +295,7 @@ export class PaginationComponent extends LitElement {
       lastElement = this.numberElements - 1;
     }
 
-    for (let i = firstElement; i <= lastElement; i++) {
+    for (let i: number = firstElement; i <= lastElement; i++) {
       if (i < this.numberElements || this.pageLimit > this.numberElements) {
         this.dataPage.push(this.paginationData[i]);
       } else {

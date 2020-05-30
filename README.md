@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 # Breaking LitElement
 
 Creación de un 'Pet Project' con Lit-Element, con TypeScript, usando una API de Breaking Bad
-=======
-# LitElement TypeScript starter 
+
+# LitElement TypeScript starter
 
 This project includes a sample component using LitElement with TypeScript.
 
@@ -58,15 +57,16 @@ There is a development HTML file located at `/dev/index.html` that you can view 
 ## Editing
 
 If you use VS Code, we highly reccomend the [lit-plugin extension](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin), which enables some extremely useful features for lit-html templates:
-  - Syntax highlighting
-  - Type-checking
-  - Code completion
-  - Hover-over docs
-  - Jump to definition
-  - Linting
-  - Quick Fixes
-  
-  The project is setup to reccomend lit-plugin to VS Code users if they don't already have it installed.
+
+- Syntax highlighting
+- Type-checking
+- Code completion
+- Hover-over docs
+- Jump to definition
+- Linting
+- Quick Fixes
+
+The project is setup to reccomend lit-plugin to VS Code users if they don't already have it installed.
 
 ## Linting
 
@@ -115,4 +115,3 @@ The site will usually be served at http://localhost:8000.
 ## More information
 
 See [Get started](https://lit-element.polymer-project.org/guide/start) on the LitElement site for more information.
->>>>>>> eb5579bf1611f181cc82259fa900a7476227c253

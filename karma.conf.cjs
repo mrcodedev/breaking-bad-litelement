@@ -9,20 +9,16 @@ module.exports = (config) => {
       frameworks: ['mocha', 'chai'],
       client: {
         mocha: {
-          ui: 'tdd',
+          ui: 'tdd'
         },
       },
       files: [{
-        pattern: config.grep ? config.grep : 'build/**/*.spec.js',
+        pattern: config.grep ? config.grep : './dist/**/*.spec.js',
         type: 'module',
       }, ],
       // See the karma-esm docs for all options
       esm: {
         nodeResolve: true,
-      },
-      coverageReporter: {
-        type: 'html',
-        dir: 'coverage/',
       },
     })
   );

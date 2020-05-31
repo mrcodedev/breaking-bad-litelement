@@ -27,6 +27,9 @@ export class AppComponent extends LitElement {
 
   render() {
     return html`
+      <spinner-component
+        .stateSpinner="${this.showSpinner}"
+      ></spinner-component>
       <header-component></header-component>
       <manager-controller @data="${this._updateData}"></manager-controller>
       <pagination-component
@@ -36,11 +39,8 @@ export class AppComponent extends LitElement {
       ></pagination-component>
       <card-list .cardlistData="${this.dataPage}"></card-list>
       <footer-component></footer-component>
-
-      <!-- 
-        <card-profile></card-profile>
+      <!--
       <search-component></search-component>
-      <spinner-component></spinner-component>
       -->
     `;
   }

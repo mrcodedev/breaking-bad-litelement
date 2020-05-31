@@ -31,14 +31,14 @@ export class AppComponent extends LitElement {
       <manager-controller @data="${this._updateData}"></manager-controller>
       <pagination-component
         .paginationData="${this.data}"
-        page-limit="10"
+        pagelimit="12"
         @data-page="${this._dataPage}"
       ></pagination-component>
+      <card-list .cardlistData="${this.dataPage}"></card-list>
       <footer-component></footer-component>
 
       <!-- 
-      <card-profile></card-profile>
-      <card-list></card-list>
+        <card-profile></card-profile>
       <search-component></search-component>
       <spinner-component></spinner-component>
       -->

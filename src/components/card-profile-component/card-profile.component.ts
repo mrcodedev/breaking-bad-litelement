@@ -1,4 +1,5 @@
 import {LitElement, html, customElement, css, property} from 'lit-element';
+import {CONSOLE_APPENDER} from 'karma/lib/constants';
 
 /**
  * Card-Component
@@ -169,80 +170,80 @@ export class CardProfileComponent extends LitElement {
     return html`
       <div
         class="container__card"
-        active$="${this._isActiverContainerCard(this.cardStatus)}"
+        ?active="${this._isActiveContainerCard(this.cardStatus)}"
       >
         <div class="container__image-block">
           <div
             class="card__detail-icon"
             @click="${this._cardActionOpen}"
-            data-id$="${this.data.id}"
+            data-id="${this.cardprofileData.id}"
           >
             <img
               src="../../../assets/icons/open-info.png"
               class="card-open-info"
-              data-id$="${this.data.id}"
+              data-id="${this.cardprofileData.id}"
               alt="open-card"
             />
           </div>
           <div
             class="image-block"
-            style$="background-image: url('${this.data.image}');"
+            style="background-image: url('${this.cardprofileData.image}');"
           >
             <div class="image-block__name">
               <div class="name__text">
-                ${this.data.name}
+                ${this.cardprofileData.name}
               </div>
               <div class="nickname__text">
-                ${this.data.nickname}
+                ${this.cardprofileData.nickname}
               </div>
             </div>
           </div>
           <div class="container__detail-block">
             <div
               class="detail-block"
-              active$="${this._isActiverContainerCard(this.cardStatus)}"
+              ?active="${this._isActiveContainerCard(this.cardStatus)}"
             >
               <div
                 class="detail-block__icon"
                 @click="${this._cardActionClose}"
-                data-id$="${this.data.id}"
+                data-id="${this.cardprofileData.id}"
               >
                 <img
                   src="../../../assets/icons/close-info.png"
                   class="card-icon-detail__close"
                   style="filter: invert(1)"
-                  data-id$="${this.data.id}"
+                  data-id="${this.cardprofileData.id}"
                   alt="close-card"
                 />
               </div>
               <div class="detail-info">
                 <div class="detailed-info">
                   <p class="info-category">Name</p>
-                  <p class="info-result">${this.data.name}</p>
+                  <p class="info-result">${this.cardprofileData.name}</p>
                 </div>
                 <div class="detailed-info">
                   <p class="info-category">Nickname</p>
-                  <p class="info-result">${this.data.nickname}</p>
+                  <p class="info-result">${this.cardprofileData.nickname}</p>
                 </div>
                 <div class="detailed-info">
                   <p class="info-category">Birthday</p>
-                  <p class="info-result">${this.data.birthday}</p>
+                  <p class="info-result">${this.cardprofileData.birthday}</p>
                 </div>
                 <div class="detailed-info">
                   <p class="info-category">Status</p>
-                  <p class="info-result">${this.data.status}</p>
+                  <p class="info-result">${this.cardprofileData.status}</p>
                 </div>
                 <div class="detailed-info">
                   <p class="info-category">Occupation</p>
-                  <p class="info-result">${this.data.occupation}</p>
+                  <p class="info-result">${this.cardprofileData.occupation}</p>
                 </div>
                 <div class="detailed-info">
                   <p class="info-category">Played By</p>
-                  <p class="info-result">${this.data.playedBy}</p>
+                  <p class="info-result">${this.cardprofileData.playedBy}</p>
                 </div>
                 <div class="detailed-info">
                   <p class="info-category">Sessions</p>
-                  <p class="info-result">${this.data.sessions}</p>
+                  <p class="info-result">${this.cardprofileData.sessions}</p>
                 </div>
               </div>
             </div>
@@ -252,56 +253,8 @@ export class CardProfileComponent extends LitElement {
     `;
   }
 
-  //   data: {
-  //     id: {
-  //       type: Number
-  //     },
-  //     name: {
-  //       type: String
-  //     },
-  //     image: {
-  //       type: String
-  //     },
-  //     nickname: {
-  //       type: String
-  //     },
-  //     birthday: {
-  //       type: String
-  //     },
-  //     status: {
-  //       type: String
-  //     },
-  //     occupation: {
-  //       type: String
-  //     },
-  //     playedBy: {
-  //       type: String
-  //     },
-  //     sessions: {
-  //       type: String
-  //     },
-  //   },
-  //   cardInfo: {
-  //     type: String,
-  //     value: ''
-  //   },
-  //   cardProfile: {
-  //     type: String,
-  //     value: 'none'
-  //   },
-  //   cardStatus: {
-  //     type: Boolean,
-  //     value: false
-  //   },
-  //   cardActive: {
-  //     type: String,
-  //     notify: true,
-  //     observer: '_checkActiveCard'
-  //   }
-  // };
-
   @property({type: String})
-  data: any;
+  cardprofileData: any;
 
   @property({type: String})
   cardInfo: any;
@@ -312,26 +265,63 @@ export class CardProfileComponent extends LitElement {
   @property({type: Boolean})
   cardStatus = false;
 
+  /**
+   * Getter/Setter paginationData
+   */
   @property({type: String})
-  cardActive: any;
+  _cardActive = '';
 
-  _cardActionOpen(event: any) {
-    this.cardActive = event.target.dataset.id;
+  /**
+   * Data to create the card
+   */
+  @property({type: String})
+  set cardActive(value: any) {
+    const oldVal = this._cardActive;
+    this._cardActive = value;
+    this.requestUpdate('cardActive', oldVal);
+    if (oldVal !== value && this.cardActive !== undefined) {
+      this._cardActiveEvent();
+      this._checkActiveCard(this.cardActive);
+    }
   }
 
-  _cardActionClose(event: any) {
+  get cardActive() {
+    return this._cardActive;
+  }
+
+  private _cardActionOpen(event: any) {
+    this.cardActive = event.target.dataset.id;
+    // console.log(event.target.dataset.id);
+  }
+
+  private _cardActionClose(event: any) {
     this.cardStatus = !this.cardStatus;
     this.cardActive = '';
   }
 
-  _isActiverContainerCard(cardStatus: any) {
+  private _isActiveContainerCard(cardStatus: boolean) {
     return cardStatus ? true : false;
   }
 
-  _checkActiveCard(actual: any) {
-    this.data.id === parseInt(actual)
+  private _checkActiveCard(actualValue: string) {
+    this.cardprofileData.id === parseInt(actualValue)
       ? (this.cardStatus = true)
       : (this.cardStatus = false);
+  }
+
+  /**
+   * Dispatch event to the data to show
+   */
+  private _cardActiveEvent(): void {
+    this.dispatchEvent(
+      new CustomEvent('card-active', {
+        detail: {
+          data: this.cardActive,
+        },
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 }
 

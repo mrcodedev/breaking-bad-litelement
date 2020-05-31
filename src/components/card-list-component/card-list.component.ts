@@ -1,5 +1,5 @@
-import {LitElement, html, customElement, css} from 'lit-element';
-
+import {LitElement, html, customElement, css, property} from 'lit-element';
+import '../card-profile-component/card-profile.component';
 /**
  * Card-List-Component
  *
@@ -35,8 +35,86 @@ export class CardListComponent extends LitElement {
     }
   `;
 
+  @property({type: Boolean})
+  isEmpty = false;
+
+  @property({type: Boolean})
+  firstTime = true;
+
+  @property({type: String})
+  cardActive = '';
+
+  /**
+   * Getter/Setter paginationData
+   */
+  @property({type: Array})
+  private _cardlistData: object[] = [];
+
+  /**
+   * Data to create the pagination
+   */
+  @property({
+    type: Array,
+  })
+  private set cardlistData(value) {
+    const oldVal = this._cardlistData;
+    this._cardlistData = value;
+    this.requestUpdate('cardlistData', oldVal);
+
+    if (oldVal !== value && this.cardlistData !== undefined) {
+      this._isEmpty();
+    }
+  }
+
+  private get cardlistData() {
+    return this._cardlistData;
+  }
+
   render() {
-    return html``;
+    return html`${this._generateCardListHTML()}`;
+  }
+
+  private _generateCardListHTML() {
+    const cardListHTML = html`
+      <div
+        class="container__card-list"
+        @card-active="${this._updateCardActive}"
+      >
+        ${this.cardlistData !== undefined
+          ? this._generateCardProfileHTML()
+          : html``}
+      </div>
+    `;
+
+    return cardListHTML;
+  }
+
+  private _generateCardProfileHTML() {
+    const cardProfileHTML = this.cardlistData.map((item: any) => {
+      return html`
+        <card-profile
+          .cardprofileData="${item}"
+          .cardActive="${this.cardActive}"
+        ></card-profile>
+      `;
+    });
+
+    return cardProfileHTML;
+  }
+
+  private _isEmpty() {
+    if (this.firstTime) {
+      this.firstTime = false;
+    } else {
+      this.cardActive = '';
+      this.cardlistData.length == 0
+        ? (this.isEmpty = true)
+        : (this.isEmpty = false);
+    }
+  }
+
+  _updateCardActive(event: any) {
+    this.cardActive = event.detail.data;
   }
 }
 

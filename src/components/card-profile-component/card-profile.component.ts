@@ -1,6 +1,6 @@
 import {LitElement, html, customElement, css, property} from 'lit-element';
-import {CONSOLE_APPENDER} from 'karma/lib/constants';
 
+import {DataModel} from '../../models/data-model.interface';
 /**
  * Card-Component
  * Element showing pagination for elements
@@ -254,7 +254,7 @@ export class CardProfileComponent extends LitElement {
     `;
   }
 
-  @property({type: String})
+  @property({type: Array})
   cardprofileData: any;
 
   @property({type: String})

@@ -45,12 +45,21 @@ export class CardListComponent extends LitElement {
     }
   `;
 
+  /**
+   * Check if have data to load in de card profile
+   */
   @property({type: Boolean})
   public isEmpty = false;
 
+  /**
+   * Its the first time loaded
+   */
   @property({type: Boolean})
   private firstTime = true;
 
+  /**
+   * Card Id Active
+   */
   @property({type: String})
   private cardActive = '';
 
@@ -68,10 +77,14 @@ export class CardListComponent extends LitElement {
   })
   private set cardlistData(value) {
     const oldVal = this._cardlistData;
-    this._cardlistData = value;
+    if (value === undefined) {
+      this._cardlistData = [];
+    } else {
+      this._cardlistData = value;
+    }
     this.requestUpdate('cardlistData', oldVal);
 
-    if (oldVal !== value && this.cardlistData !== undefined) {
+    if (oldVal !== value) {
       this._isEmpty();
     }
   }
@@ -95,7 +108,7 @@ export class CardListComponent extends LitElement {
         class="container__card-list"
         @card-active="${this._updateCardActive}"
       >
-        ${this.cardlistData !== undefined
+        ${this.cardlistData.length > 0
           ? this._generateCardProfileHTML()
           : html``}
       </div>

@@ -2,6 +2,11 @@ import {LitElement, customElement, property, html} from 'lit-element';
 
 import '../data-manager-controller/data-manager-controller';
 
+/**
+ * Manager-Controller
+ * Controller sent the data to app
+ * @class ManagerController
+ */
 @customElement('manager-controller')
 export class ManagerController extends LitElement {
   render() {
@@ -66,6 +71,9 @@ export class ManagerController extends LitElement {
     this.method = 'GET';
   }
 
+  /**
+   * Sent Event with the data to mange the app
+   */
   private _dataReturned(event: CustomEvent): void {
     this.dispatchEvent(
       new CustomEvent('data', {
@@ -78,6 +86,9 @@ export class ManagerController extends LitElement {
     );
   }
 
+  /**
+   * Sent Event with the ERROR of API
+   */
   private _dataReturnedError(event: CustomEvent): void {
     this.dispatchEvent(
       new CustomEvent('data', {

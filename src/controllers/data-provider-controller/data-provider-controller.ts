@@ -1,5 +1,7 @@
 import {LitElement, customElement, property} from 'lit-element';
 
+import {MyFetchData} from '../../models/controllers.interface';
+
 /**
  * Data-Provider
  * Connect to the API and return the data
@@ -56,13 +58,6 @@ export class DataProviderController extends LitElement {
    * Generate the API Request with the params
    */
   private _generateRequest(): void {
-    interface MyFetchData {
-      method: string;
-      headers: HeadersInit;
-      signal: AbortSignal;
-      body?: string;
-    }
-
     const controller = new AbortController();
     const signal = controller.signal;
 

@@ -2,7 +2,8 @@ import {LitElement, html, customElement, css} from 'lit-element';
 
 /**
  * Footer-Component
- *
+ * Footer Component to show footer text
+ * @class FooterComponent
  */
 @customElement('footer-component')
 export class FooterComponent extends LitElement {
@@ -42,10 +43,23 @@ export class FooterComponent extends LitElement {
     }
 
     .repositories {
-      margin-top: 5px;
-      margin-bottom: 2px;
-      width: 40px;
-      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .repositories img {
+      padding: 3px;
+    }
+
+    .gitlab {
+      width: 43px;
+      height: 43px;
+    }
+
+    .github {
+      width: 25px;
+      height: 25px;
     }
   `;
 
@@ -59,6 +73,7 @@ export class FooterComponent extends LitElement {
       <p class="author">Developed and designed by <a href="http://www.mrcodedev.dev" target="_blank">MrCodeDev</a></p>
       <p class="repositories"><a href="https://gitlab.com/mrcodedev/breaking-polymer" target="_blank"><img
             src="../../../assets/icons/gitlab.svg" class="gitlab" alt="GitLab Logo"></a>
+            <a href="https://github.com/mrcodedev/breaking-bad-litelement" target="_blank"><img src="../../../assets/icons/github.png" class="github" alt="GitHub Logo"></a>
       </p>
     </div>
     `;

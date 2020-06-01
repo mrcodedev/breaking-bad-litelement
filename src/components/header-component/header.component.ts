@@ -1,8 +1,9 @@
 import {LitElement, html, customElement, css} from 'lit-element';
 
 /**
- * Pagination-Component
- *
+ * Header-Component
+ * Header Component to show the logo
+ * @class HeaderComponent
  */
 @customElement('header-component')
 export class HeaderComponent extends LitElement {

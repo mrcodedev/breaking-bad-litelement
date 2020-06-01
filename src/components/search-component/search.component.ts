@@ -68,7 +68,7 @@ export class SearchComponent extends LitElement {
           @input="${(event: InputEvent) =>
             this._assignAndSearch(
               // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-              (<HTMLInputElement>event.target).value
+              (<HTMLInputElement>event.target).value!
             )}"
         />
         <div type="submit">

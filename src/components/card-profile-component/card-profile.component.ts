@@ -1,6 +1,7 @@
 import {LitElement, html, customElement, css, property} from 'lit-element';
 
 import {DataModel} from '../../models/data-model.interface';
+
 /**
  * Card-Component
  * Element showing pagination for elements
@@ -176,7 +177,11 @@ export class CardProfileComponent extends LitElement {
         <div class="container__image-block">
           <div
             class="card__detail-icon"
-            @click="${this._cardActionOpen}"
+            @click="${(event: MouseEvent) =>
+              this._cardActionOpen(
+                // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+                (<HTMLInputElement>event.target).dataset.id!
+              )}"
             data-id="${this.cardprofileData.id}"
           >
             <img
@@ -254,15 +259,21 @@ export class CardProfileComponent extends LitElement {
     `;
   }
 
-  @property({type: Array})
-  cardprofileData: any;
+  /**
+   * Data of the card
+   */
+  @property({type: Object})
+  cardprofileData!: DataModel;
 
+  /**
+   * Id of the card
+   */
   @property({type: String})
-  cardInfo: any;
+  cardProfile = '';
 
-  @property({type: String})
-  cardProfile: any;
-
+  /**
+   * Status of card, if open is true
+   */
   @property({type: Boolean})
   cardStatus = false;
 
@@ -276,36 +287,53 @@ export class CardProfileComponent extends LitElement {
    * Data to create the card
    */
   @property({type: String})
-  set cardActive(value: any) {
+  set cardActive(value: string) {
     const oldVal = this._cardActive;
     this._cardActive = value;
     this.requestUpdate('cardActive', oldVal);
-    if (oldVal !== value && this.cardActive !== undefined) {
+    if (oldVal !== value) {
       this._cardActiveEvent();
       this._checkActiveCard(this.cardActive);
     }
   }
 
-  get cardActive() {
+  get cardActive(): string {
     return this._cardActive;
   }
 
-  private _cardActionOpen(event: any) {
-    this.cardActive = event.target.dataset.id;
-    // console.log(event.target.dataset.id);
+  /**
+   * Open Select Card
+   */
+  private _cardActionOpen(data: string): void {
+    if (data !== undefined) {
+      this.cardActive = data;
+    } else {
+      this.cardActive = '';
+    }
   }
 
-  private _cardActionClose(event: any) {
+  /**
+   * Close the select card
+   */
+  private _cardActionClose(): void {
     this.cardStatus = !this.cardStatus;
     this.cardActive = '';
   }
 
-  private _isActiveContainerCard(cardStatus: boolean) {
+  /**
+   * Check in container if active or not
+   *
+   * @return {Boolean} The card is active
+   */
+  private _isActiveContainerCard(cardStatus: boolean): boolean {
     return cardStatus ? true : false;
   }
 
-  private _checkActiveCard(actualValue: string) {
-    this.cardprofileData.id === parseInt(actualValue)
+  /**
+   * Check if the card is active
+   */
+  private _checkActiveCard(actualValue: string): void {
+    parseInt(this.cardprofileData.id) === parseInt(actualValue)
       ? (this.cardStatus = true)
       : (this.cardStatus = false);
   }

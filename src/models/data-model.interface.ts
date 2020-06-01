@@ -1,4 +1,4 @@
-interface DataModel {
+interface DataModel extends Array<{}> {
   /**
    * birthday: date of birthday of actor
    */

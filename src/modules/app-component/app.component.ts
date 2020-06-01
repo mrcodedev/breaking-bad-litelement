@@ -5,6 +5,7 @@ import '../../controllers/data-provider-controller/data-provider-controller';
 import '../../controllers/data-manager-controller/data-manager-controller';
 import '../../controllers/manager-controller/manager-controller';
 
+//Components
 import '../../components/card-profile-component/card-profile.component';
 import '../../components/card-list-component/card-list.component';
 import '../../components/header-component/header.component';

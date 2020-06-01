@@ -24,37 +24,37 @@ export class ManagerController extends LitElement {
    * The host to connect to API.
    */
   @property({type: String})
-  host: string | undefined;
+  private host: string | undefined;
 
   /**
    * The path to query API.
    */
-  @property({type: String, reflect: true})
-  path = '';
+  @property({type: String})
+  private path = '';
 
   /**
    * Header connction to API Request
    */
-  @property({type: Object, reflect: true})
-  headers = {};
+  @property({type: Object})
+  private headers = {};
 
   /**
    * Body connection to API Request
    */
-  @property({type: String, reflect: true})
-  body = '';
+  @property({type: String})
+  private body = '';
 
   /**
    * Parameters connection to API Request
    */
-  @property({type: String, reflect: true})
-  params = '';
+  @property({type: String})
+  private params = '';
 
   /**
    * Method of connection to API Request
    */
-  @property({type: String, reflect: true})
-  method = '';
+  @property({type: String})
+  private method = '';
 
   constructor() {
     super();
@@ -66,7 +66,7 @@ export class ManagerController extends LitElement {
     this.method = 'GET';
   }
 
-  _dataReturned(event: any) {
+  private _dataReturned(event: CustomEvent) {
     this.dispatchEvent(
       new CustomEvent('data', {
         detail: {
@@ -78,7 +78,7 @@ export class ManagerController extends LitElement {
     );
   }
 
-  _dataReturnedError(event: any) {
+  private _dataReturnedError(event: CustomEvent) {
     this.dispatchEvent(
       new CustomEvent('data', {
         detail: {

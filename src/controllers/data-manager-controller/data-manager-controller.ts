@@ -1,5 +1,6 @@
 import {LitElement, html, customElement, property} from 'lit-element';
 import '../data-provider-controller/data-provider-controller';
+import {DataModelAPI} from '../../models/data-model.interface';
 /**
  * Data-Manager-Controller
  *
@@ -65,8 +66,8 @@ export class DataManagerController extends LitElement {
   /**
    * Get de API data and transform the data and fire event
    */
-  private _onRequestSuccess(event: any) {
-    const data = event.detail.data.map((character: any) => {
+  private _onRequestSuccess(event: CustomEvent) {
+    const data = event.detail.data.map((character: DataModelAPI) => {
       return {
         id: character.char_id,
         name: character.name,
@@ -91,7 +92,7 @@ export class DataManagerController extends LitElement {
     );
   }
 
-  private _onRequestError(event: any) {
+  private _onRequestError(event: CustomEvent) {
     this.dispatchEvent(
       new CustomEvent('returned-data-error', {
         detail: {

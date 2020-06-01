@@ -1,7 +1,9 @@
 import {LitElement, customElement, property} from 'lit-element';
 
 /**
- * Data-Provider-Controller
+ * Data-Provider
+ * Connect to the API and return the data
+ * @class DataProviderController
  */
 @customElement('data-provider-controller')
 export class DataProviderController extends LitElement {

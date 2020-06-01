@@ -49,17 +49,18 @@ export class FooterComponent extends LitElement {
     }
 
     .repositories img {
-      padding: 3px;
+      padding: 4px;
     }
 
     .gitlab {
-      width: 43px;
-      height: 43px;
+      margin-top: 2px;
+      width: 35x;
+      height: 35px;
     }
 
     .github {
-      width: 25px;
-      height: 25px;
+      width: 22px;
+      height: 22px;
     }
   `;
 
@@ -71,7 +72,7 @@ export class FooterComponent extends LitElement {
         the
         property of their respective owners</a></p>
       <p class="author">Developed and designed by <a href="http://www.mrcodedev.dev" target="_blank">MrCodeDev</a></p>
-      <p class="repositories"><a href="https://gitlab.com/mrcodedev/breaking-polymer" target="_blank"><img
+      <p class="repositories"><a href="https://gitlab.com/mrcodedev/breaking-litelement" target="_blank"><img
             src="../../../assets/icons/gitlab.svg" class="gitlab" alt="GitLab Logo"></a>
             <a href="https://github.com/mrcodedev/breaking-bad-litelement" target="_blank"><img src="../../../assets/icons/github.png" class="github" alt="GitHub Logo"></a>
       </p>

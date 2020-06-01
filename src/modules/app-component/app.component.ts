@@ -14,9 +14,13 @@ import '../../components/pagination-component/pagination.component';
 import '../../components/search-component/search.component';
 import '../../components/spinner-component/spinner.component';
 
+//Interfaces
+import {DataModel} from '../../models/data-model.interface';
+
 /**
- * App-Component.
- *
+ * App-Component
+ * Component to link the controller and Components
+ * @class AppComponent
  */
 @customElement('app-component')
 export class AppComponent extends LitElement {
@@ -39,7 +43,7 @@ export class AppComponent extends LitElement {
       ></search-component>
       <pagination-component
         .paginationData="${this.dataFiltered}"
-        pagelimit="12"
+        pagelimit="10"
         @data-page="${this._dataPage}"
       ></pagination-component>
       <card-list .cardlistData="${this.dataPage}"></card-list>
@@ -51,34 +55,49 @@ export class AppComponent extends LitElement {
    * Data return of API
    */
   @property({type: Array})
-  data: any;
+  private data: DataModel[] = [];
 
+  /**
+   * Data Filtered of Search
+   */
   @property({type: Array})
-  dataset: any;
+  private dataFiltered: DataModel[] = [];
 
+  /**
+   * Data Elements of Pagination
+   */
   @property({type: Array})
-  dataFiltered: any;
+  private dataPage: DataModel[] = [];
 
-  @property({type: Array})
-  dataPage: any;
-
+  /**
+   * Show spinner of not
+   */
   @property({type: Boolean})
-  showSpinner = true;
+  private showSpinner = true;
 
   constructor() {
     super();
   }
 
-  _updateData(event: any) {
+  /**
+   * Update data of API
+   */
+  private _updateData(event: CustomEvent): void {
     this.data = event.detail.data;
     this.dataFiltered = event.detail.data;
   }
 
-  _dataSearch(event: any) {
+  /**
+   * Update data of search
+   */
+  private _dataSearch(event: CustomEvent): void {
     this.dataFiltered = event.detail.data;
   }
 
-  _dataPage(event: any) {
+  /**
+   * Update data of pagination
+   */
+  private _dataPage(event: CustomEvent): void {
     this.dataPage = event.detail.data;
     if (event.detail.data.length > 0) {
       this.showSpinner = false;

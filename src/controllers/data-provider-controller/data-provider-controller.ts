@@ -11,13 +11,13 @@ export class DataProviderController extends LitElement {
    * The host to connect to API.
    */
   @property({type: String})
-  host: string | undefined;
+  host = '';
 
   /**
    * The path to query API.
    */
   @property({type: String})
-  path: string | undefined;
+  path = '';
 
   /**
    * Header connction to API Request
@@ -29,13 +29,13 @@ export class DataProviderController extends LitElement {
    * Body connection to API Request
    */
   @property({type: String})
-  body: string | undefined;
+  body = '';
 
   /**
    * Parameters connection to API Request
    */
   @property({type: String})
-  params: string | undefined;
+  params = '';
 
   /**
    * Method of connection to API Request

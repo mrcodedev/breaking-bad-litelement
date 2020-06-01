@@ -1,9 +1,11 @@
 import {LitElement, html, customElement, property} from 'lit-element';
 import '../data-provider-controller/data-provider-controller';
-import {DataModelAPI} from '../../models/data-model.interface';
+
+import {DataModel, DataModelAPI} from '../../models/data-model.interface';
 /**
  * Data-Manager-Controller
- *
+ * Receive de data of data-provider-controller
+ * @class DataManagerController
  */
 @customElement('data-manager-controller')
 export class DataManagerController extends LitElement {
@@ -27,31 +29,31 @@ export class DataManagerController extends LitElement {
    * The host to connect to API.
    */
   @property({type: String})
-  host: string | undefined;
+  private host = '';
 
   /**
    * The path to query API.
    */
   @property({type: String})
-  path: string | undefined;
+  private path = '';
 
   /**
    * Header connction to API Request
    */
   @property({type: Object})
-  headers = {};
+  private headers = {};
 
   /**
    * Body connection to API Request
    */
   @property({type: String})
-  body: string | undefined;
+  private body = '';
 
   /**
    * Parameters connection to API Request
    */
   @property({type: String})
-  params: string | undefined;
+  private params = '';
 
   /**
    * Method of connection to API Request
@@ -66,7 +68,7 @@ export class DataManagerController extends LitElement {
   /**
    * Get de API data and transform the data and fire event
    */
-  private _onRequestSuccess(event: CustomEvent) {
+  private _onRequestSuccess(event: CustomEvent): void {
     const data = event.detail.data.map((character: DataModelAPI) => {
       return {
         id: character.char_id,
@@ -81,6 +83,13 @@ export class DataManagerController extends LitElement {
       };
     });
 
+    this._returnedDataEvent(data);
+  }
+
+  /**
+   * Sent Event with the API returned-data
+   */
+  private _returnedDataEvent(data: DataModel): void {
     this.dispatchEvent(
       new CustomEvent('returned-data', {
         detail: {
@@ -92,7 +101,10 @@ export class DataManagerController extends LitElement {
     );
   }
 
-  private _onRequestError(event: CustomEvent) {
+  /**
+   * Sent Event with the ERROR of API
+   */
+  private _onRequestError(event: CustomEvent): void {
     this.dispatchEvent(
       new CustomEvent('returned-data-error', {
         detail: {

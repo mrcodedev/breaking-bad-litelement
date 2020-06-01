@@ -15,15 +15,48 @@ suite('footer-component', () => {
       el,
       `
       <div class="footer_container">
-      <p class="api-author">API Rest of <a href="https://breakingbadapi.com/" target="_blank">API Breaking Bad</a> - All
-        trademarks are
-        the
-        property of their respective owners</a></p>
-      <p class="author">Developed and designed by <a href="http://www.mrcodedev.dev" target="_blank">MrCodeDev</a></p>
-      <p class="repositories"><a href="https://gitlab.com/mrcodedev/breaking-polymer" target="_blank"><img
-            src="../../../assets/icons/gitlab.svg" class="gitlab" alt="GitLab Logo"></a>
-      </p>
-    </div>
+        <p class="api-author">
+          API Rest of
+          <a
+            href="https://breakingbadapi.com/"
+            target="_blank"
+          >
+            API Breaking Bad
+          </a>
+          - All trademarks are the property of their respective owners
+        </p>
+        <p class="author">
+          Developed and designed by
+          <a
+            href="http://www.mrcodedev.dev"
+            target="_blank"
+          >
+            MrCodeDev
+          </a>
+        </p>
+        <p class="repositories">
+          <a
+            href="https://gitlab.com/mrcodedev/breaking-litelement"
+            target="_blank"
+          >
+            <img
+              alt="GitLab Logo"
+              class="gitlab"
+              src="../../../assets/icons/gitlab.svg"
+            >
+          </a>
+          <a
+            href="https://github.com/mrcodedev/breaking-bad-litelement"
+            target="_blank"
+          >
+            <img
+              alt="GitHub Logo"
+              class="github"
+              src="../../../assets/icons/github.png"
+            >
+          </a>
+        </p>
+      </div>
     `
     );
   });

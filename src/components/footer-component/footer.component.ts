@@ -67,10 +67,7 @@ export class FooterComponent extends LitElement {
   render() {
     return html`
     <div class="footer_container">
-      <p class="api-author">API Rest of <a href="https://breakingbadapi.com/" target="_blank">API Breaking Bad</a> - All
-        trademarks are
-        the
-        property of their respective owners</a></p>
+      <p class="api-author">API Rest of <a href="https://breakingbadapi.com/" target="_blank">API Breaking Bad</a> - All trademarks are the property of their respective owners</a></p>
       <p class="author">Developed and designed by <a href="http://www.mrcodedev.dev" target="_blank">MrCodeDev</a></p>
       <p class="repositories"><a href="https://gitlab.com/mrcodedev/breaking-litelement" target="_blank"><img
             src="../../../assets/icons/gitlab.svg" class="gitlab" alt="GitLab Logo"></a>

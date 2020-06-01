@@ -10,10 +10,6 @@ import {
 import {PageLinks, DataSection} from '../../models/page-component.interface';
 
 /**
- * Type of DataSection
- */
-
-/**
  * Pagination-Component
  * Element showing pagination for elements
  * @class PaginationComponent

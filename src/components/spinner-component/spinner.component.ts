@@ -2,7 +2,8 @@ import {LitElement, html, customElement, css, property} from 'lit-element';
 
 /**
  * Spinner-Component
- *
+ * Spinner show if data loading
+ * @class SpinnerComponent
  */
 @customElement('spinner-component')
 export class SpinnerComponent extends LitElement {
@@ -65,8 +66,11 @@ export class SpinnerComponent extends LitElement {
     `;
   }
 
+  /**
+   * Observe the state of spinner
+   */
   @property({type: Boolean})
-  stateSpinner = false;
+  private stateSpinner = false;
 }
 
 declare global {

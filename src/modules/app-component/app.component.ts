@@ -43,7 +43,7 @@ export class AppComponent extends LitElement {
       ></search-component>
       <pagination-component
         .paginationData="${this.dataFiltered}"
-        pagelimit="10"
+        pageLimit="10"
         @data-page="${this._dataPage}"
       ></pagination-component>
       <card-list .cardlistData="${this.dataPage}"></card-list>

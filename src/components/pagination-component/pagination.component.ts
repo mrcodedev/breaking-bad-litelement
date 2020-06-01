@@ -63,7 +63,7 @@ export class PaginationComponent extends LitElement {
   /**
    * Elements limit per page
    */
-  @property({type: Number, attribute: 'page-limit'})
+  @property({type: Number})
   private pageLimit = 10;
 
   /**

@@ -32,16 +32,17 @@ export class AppComponent extends LitElement {
       ></spinner-component>
       <header-component></header-component>
       <manager-controller @data="${this._updateData}"></manager-controller>
+      <search-component
+        .searchData="${this.data}"
+        @data-search="${this._dataSearch}"
+      ></search-component>
       <pagination-component
-        .paginationData="${this.data}"
+        .paginationData="${this.dataFiltered}"
         pagelimit="12"
         @data-page="${this._dataPage}"
       ></pagination-component>
       <card-list .cardlistData="${this.dataPage}"></card-list>
       <footer-component></footer-component>
-      <!--
-      <search-component></search-component>
-      -->
     `;
   }
 
@@ -72,9 +73,9 @@ export class AppComponent extends LitElement {
     this.dataFiltered = event.detail.data;
   }
 
-  // _dataSearch(event: any) {
-  //   this.dataFiltered = event.detail.data;
-  // }
+  _dataSearch(event: any) {
+    this.dataFiltered = event.detail.data;
+  }
 
   _dataPage(event: any) {
     this.dataPage = event.detail.data;

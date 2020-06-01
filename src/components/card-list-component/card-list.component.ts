@@ -1,8 +1,18 @@
-import {LitElement, html, customElement, css, property} from 'lit-element';
+import {
+  LitElement,
+  html,
+  customElement,
+  css,
+  property,
+  TemplateResult,
+} from 'lit-element';
+
 import '../card-profile-component/card-profile.component';
+
 /**
- * Card-List-Component
- *
+ * Card-List
+ * List of cards to show into app
+ * @class CardListComponent
  */
 @customElement('card-list')
 export class CardListComponent extends LitElement {
@@ -36,13 +46,13 @@ export class CardListComponent extends LitElement {
   `;
 
   @property({type: Boolean})
-  isEmpty = false;
+  public isEmpty = false;
 
   @property({type: Boolean})
-  firstTime = true;
+  private firstTime = true;
 
   @property({type: String})
-  cardActive = '';
+  private cardActive = '';
 
   /**
    * Getter/Setter paginationData
@@ -74,7 +84,12 @@ export class CardListComponent extends LitElement {
     return html`${this._generateCardListHTML()}`;
   }
 
-  private _generateCardListHTML() {
+  /**
+   * Generate all the card-list
+   *
+   * @return {TemplateResult} HTML of cardlist and cardprofile
+   */
+  private _generateCardListHTML(): TemplateResult {
     const cardListHTML = html`
       <div
         class="container__card-list"
@@ -89,8 +104,13 @@ export class CardListComponent extends LitElement {
     return cardListHTML;
   }
 
-  private _generateCardProfileHTML() {
-    const cardProfileHTML = this.cardlistData.map((item: any) => {
+  /**
+   * Get HTML of cardprofile with data
+   *
+   * @return {TemplateResult} HTML of cardprofile
+   */
+  private _generateCardProfileHTML(): TemplateResult[] {
+    const cardProfileHTML = this.cardlistData.map((item: object) => {
       return html`
         <card-profile
           .cardprofileData="${item}"
@@ -102,18 +122,24 @@ export class CardListComponent extends LitElement {
     return cardProfileHTML;
   }
 
-  private _isEmpty() {
+  /**
+   * Check if its first time to load and if have any elements in data
+   */
+  private _isEmpty(): void {
     if (this.firstTime) {
       this.firstTime = false;
     } else {
       this.cardActive = '';
-      this.cardlistData.length == 0
+      this.cardlistData.length === 0
         ? (this.isEmpty = true)
         : (this.isEmpty = false);
     }
   }
 
-  _updateCardActive(event: any) {
+  /**
+   * Update Active Card
+   */
+  _updateCardActive(event: CustomEvent): void {
     this.cardActive = event.detail.data;
   }
 }

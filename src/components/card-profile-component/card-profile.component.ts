@@ -3,7 +3,8 @@ import {CONSOLE_APPENDER} from 'karma/lib/constants';
 
 /**
  * Card-Component
- *
+ * Element showing pagination for elements
+ * @class PaginationComponent
  */
 @customElement('card-profile')
 export class CardProfileComponent extends LitElement {

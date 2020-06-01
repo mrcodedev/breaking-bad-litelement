@@ -60,11 +60,26 @@ export class PaginationComponent extends LitElement {
     }
   `;
 
+  @property({type: Number})
+  private _pageLimit = 10;
+
   /**
    * Elements limit per page
    */
   @property({type: Number})
-  private pageLimit = 10;
+  private set pageLimit(value) {
+    if (value !== undefined && value > 0) {
+      this._pageLimit = value;
+    }
+
+    const oldVal: number = this._pageLimit;
+
+    this.requestUpdate('pageLimit', oldVal);
+  }
+
+  private get pageLimit() {
+    return this._pageLimit;
+  }
 
   /**
    * Total number of elements in the query
@@ -97,7 +112,7 @@ export class PaginationComponent extends LitElement {
     type: Array,
   })
   private set paginationData(value) {
-    const oldVal = this._paginationData;
+    const oldVal: object[] = this._paginationData;
     this._paginationData = value;
     this.requestUpdate('paginationData', oldVal);
 
@@ -186,7 +201,6 @@ export class PaginationComponent extends LitElement {
    */
   private _generatePageIndexes(): void {
     let numberPages: number = this.numberElements / this.pageLimit;
-
     numberPages =
       numberPages % 1 === 0 ? numberPages : Math.floor(numberPages) + 1;
 

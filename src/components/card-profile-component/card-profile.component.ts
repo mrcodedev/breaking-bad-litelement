@@ -288,7 +288,7 @@ export class CardProfileComponent extends LitElement {
    */
   @property({type: String})
   set cardActive(value: string) {
-    const oldVal = this._cardActive;
+    const oldVal: string = this._cardActive;
     this._cardActive = value;
     this.requestUpdate('cardActive', oldVal);
     if (oldVal !== value) {

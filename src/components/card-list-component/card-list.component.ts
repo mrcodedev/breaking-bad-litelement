@@ -75,8 +75,8 @@ export class CardListComponent extends LitElement {
   @property({
     type: Array,
   })
-  private set cardlistData(value) {
-    const oldVal = this._cardlistData;
+  private set cardlistData(value: object[]) {
+    const oldVal: object[] = this._cardlistData;
     if (value === undefined) {
       this._cardlistData = [];
     } else {
@@ -103,7 +103,7 @@ export class CardListComponent extends LitElement {
    * @return {TemplateResult} HTML of cardlist and cardprofile
    */
   private _generateCardListHTML(): TemplateResult {
-    const cardListHTML = html`
+    const cardListHTML: TemplateResult = html`
       <div
         class="container__card-list"
         @card-active="${this._updateCardActive}"
@@ -123,14 +123,16 @@ export class CardListComponent extends LitElement {
    * @return {TemplateResult} HTML of cardprofile
    */
   private _generateCardProfileHTML(): TemplateResult[] {
-    const cardProfileHTML = this.cardlistData.map((item: object) => {
-      return html`
-        <card-profile
-          .cardprofileData="${item}"
-          .cardActive="${this.cardActive}"
-        ></card-profile>
-      `;
-    });
+    const cardProfileHTML: TemplateResult[] = this.cardlistData.map(
+      (item: object) => {
+        return html`
+          <card-profile
+            .cardprofileData="${item}"
+            .cardActive="${this.cardActive}"
+          ></card-profile>
+        `;
+      }
+    );
 
     return cardProfileHTML;
   }

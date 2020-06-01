@@ -1,8 +1,11 @@
 import {LitElement, html, customElement, css, property} from 'lit-element';
 
+import {SearchData} from '../../models/search-component.interface';
+
 /**
  * Search-Component
- *
+ * Searcher to API
+ * @class SearchComponent
  */
 @customElement('search-component')
 export class SearchComponent extends LitElement {
@@ -62,7 +65,11 @@ export class SearchComponent extends LitElement {
           type="text"
           placeholder="Search..."
           name="search"
-          @input="${(e: any) => this._assignAndSearch(e.path[0].value)}"
+          @input="${(event: InputEvent) =>
+            this._assignAndSearch(
+              // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+              (<HTMLInputElement>event.target).value
+            )}"
         />
         <div type="submit">
           <img
@@ -75,40 +82,43 @@ export class SearchComponent extends LitElement {
     `;
   }
 
-  // searchData: {
-  //   type: Array,
-  //   observer: '_searchData'
-  // },
-  // valueToSearch: {
-  //   type: String,
-  // },
-  // filteredData: {
-  //   type: Array,
-  // }
-  // FALTA VER COMO HACER EL OBSERVER
-
+  /**
+   * Data to search
+   */
   @property({type: Array})
-  searchData: any;
+  private searchData: SearchData[] = [];
 
+  /**
+   * Value to search
+   */
   @property({type: String})
-  valueToSearch = '';
+  private valueToSearch = '';
 
+  /**
+   * Array filtered data searched
+   */
   @property({type: Array})
-  filteredData: any;
+  private filteredData: object[] = [];
 
-  _searchData(data: any) {
-    this.searchData = data;
+  constructor() {
+    super();
   }
 
-  _assignAndSearch(data: any) {
+  /**
+   * Generate HTML previous page with actions
+   */
+  private _assignAndSearch(data: string): void {
     this.valueToSearch = data;
     this._searchFilter();
   }
 
-  _searchFilter() {
+  /**
+   * Filter the data and invocate the searchEvent
+   */
+  private _searchFilter(): void {
     if (this.searchData.length > 0) {
       this.filteredData = this.searchData.filter(
-        (search: any) =>
+        (search: SearchData) =>
           search.name
             .toLowerCase()
             .includes(this.valueToSearch.toLocaleLowerCase()) ||
@@ -127,7 +137,10 @@ export class SearchComponent extends LitElement {
     }
   }
 
-  _searchEvent() {
+  /**
+   * Generate HTML previous page with actions
+   */
+  private _searchEvent(): void {
     this.dispatchEvent(
       new CustomEvent('data-search', {
         detail: {

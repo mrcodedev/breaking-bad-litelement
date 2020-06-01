@@ -1,6 +1,6 @@
 import {LitElement, html, customElement, css, property} from 'lit-element';
 
-import {SearchData} from '../../models/search-component.interface';
+import {DataModel} from '../../models/data-model.interface';
 
 /**
  * Search-Component
@@ -86,7 +86,7 @@ export class SearchComponent extends LitElement {
    * Data to search
    */
   @property({type: Array})
-  private searchData: SearchData[] = [];
+  private searchData: DataModel[] = [];
 
   /**
    * Value to search
@@ -118,7 +118,7 @@ export class SearchComponent extends LitElement {
   private _searchFilter(): void {
     if (this.searchData.length > 0) {
       this.filteredData = this.searchData.filter(
-        (search: SearchData) =>
+        (search: DataModel) =>
           search.name
             .toLowerCase()
             .includes(this.valueToSearch.toLocaleLowerCase()) ||

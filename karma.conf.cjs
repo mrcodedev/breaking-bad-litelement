@@ -6,7 +6,7 @@ const merge = require('deepmerge');
 module.exports = (config) => {
   config.set(
     merge(createDefaultConfig(config), {
-      frameworks: ['mocha', 'chai'],
+      frameworks: ['mocha', 'chai', 'sinon'],
       client: {
         mocha: {
           ui: 'tdd'

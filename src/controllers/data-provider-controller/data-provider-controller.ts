@@ -57,7 +57,7 @@ export class DataProviderController extends LitElement {
   /**
    * Generate the API Request with the params
    */
-  private _generateRequest(): void {
+  public _generateRequest(): void {
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -93,7 +93,7 @@ export class DataProviderController extends LitElement {
   /**
    * When the Request is success pass the data
    */
-  private _requestSuccess(apiData: Promise<object>) {
+  public _requestSuccess(apiData: Promise<object>) {
     apiData.then((data: object) => {
       this.dispatchEvent(
         new CustomEvent('request-success', {
@@ -110,7 +110,7 @@ export class DataProviderController extends LitElement {
   /**
    * When the Request is unsuccess pass the error
    */
-  private _requestError(errorData: object): void {
+  public _requestError(errorData: object): void {
     this.dispatchEvent(
       new CustomEvent('request-error', {
         bubbles: true,

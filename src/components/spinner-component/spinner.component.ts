@@ -47,6 +47,12 @@ export class SpinnerComponent extends LitElement {
     }
   `;
 
+  /**
+   * Observe the state of spinner
+   */
+  @property({type: Boolean})
+  private stateSpinner = false;
+
   render() {
     `${
       this.stateSpinner ? html`<p>something</p>` : html`<p>something else</p>`
@@ -65,12 +71,6 @@ export class SpinnerComponent extends LitElement {
         : html``}
     `;
   }
-
-  /**
-   * Observe the state of spinner
-   */
-  @property({type: Boolean})
-  private stateSpinner = false;
 }
 
 declare global {

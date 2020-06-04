@@ -76,9 +76,9 @@ export class DataProviderController extends LitElement {
     }
 
     fetch(realPath, myFetchData)
-      .then((response) => {
+      .then((response: Response) => {
         if (response.ok) {
-          this._requestSuccess(response.json());
+          return response.json();
         } else {
           controller.abort();
           throw new Error(`${response.statusText}, status: ${response.status}`);
@@ -87,24 +87,25 @@ export class DataProviderController extends LitElement {
       .catch((error: object) => {
         controller.abort();
         this._requestError(error);
+      })
+      .then((response) => {
+        this._requestSuccess(response);
       });
   }
 
   /**
    * When the Request is success pass the data
    */
-  public _requestSuccess(apiData: Promise<object>) {
-    apiData.then((data: object) => {
-      this.dispatchEvent(
-        new CustomEvent('request-success', {
-          bubbles: true,
-          composed: true,
-          detail: {
-            data,
-          },
-        })
-      );
-    });
+  public _requestSuccess(apiData: object) {
+    this.dispatchEvent(
+      new CustomEvent('request-success', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          data: apiData,
+        },
+      })
+    );
   }
 
   /**

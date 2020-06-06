@@ -57,7 +57,7 @@ export class DataProviderController extends LitElement {
   /**
    * Generate the API Request with the params
    */
-  public _generateRequest(): void {
+  private _generateRequest(): void {
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -77,26 +77,26 @@ export class DataProviderController extends LitElement {
 
     fetch(realPath, myFetchData)
       .then((response: Response) => {
-        if (response.ok) {
+        if (response.status === 200) {
           return response.json();
         } else {
           controller.abort();
           throw new Error(`${response.statusText}, status: ${response.status}`);
         }
       })
+      .then((response) => {
+        this._requestSuccess(response);
+      })
       .catch((error: object) => {
         controller.abort();
         this._requestError(error);
-      })
-      .then((response) => {
-        this._requestSuccess(response);
       });
   }
 
   /**
    * When the Request is success pass the data
    */
-  public _requestSuccess(apiData: object) {
+  public _requestSuccess(apiData: object): void {
     this.dispatchEvent(
       new CustomEvent('request-success', {
         bubbles: true,

@@ -106,12 +106,6 @@ describe('Data Provider Controller', () => {
       el.connectedCallback();
 
       assert.isTrue(generateRequestSpy.calledOnce);
-
-      // const eventRequestSucess = sinon.spy(el, '_requestSuccess');
-
-      // sinon.spy(el.)
-
-      // assert.isTrue(eventRequestSucess.firstCall);
     });
   });
   describe('API ERROR', () => {

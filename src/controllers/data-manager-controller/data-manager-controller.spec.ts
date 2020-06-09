@@ -3,7 +3,7 @@ import {fixture, html, expect} from '@open-wc/testing';
 
 const assert = chai.assert;
 
-suite('Data Provicer Controller', () => {
+suite('Data Manager Controller', () => {
   test('is defined', () => {
     const el = document.createElement('data-manager-controller');
     assert.instanceOf(el, DataManagerController);

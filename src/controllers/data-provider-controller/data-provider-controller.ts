@@ -77,7 +77,7 @@ export class DataProviderController extends LitElement {
 
     fetch(realPath, myFetchData)
       .then((response: Response) => {
-        if (response.status === 200) {
+        if (response.ok) {
           return response.json();
         } else {
           controller.abort();

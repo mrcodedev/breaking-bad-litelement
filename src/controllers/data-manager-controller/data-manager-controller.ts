@@ -87,13 +87,13 @@ export class DataManagerController extends LitElement {
   }
 
   /**
-   * Sent Event with the ERROR of API
+   * Sent Event with the API returned-data
    */
-  public _onRequestError(event: any) {
+  public _returnedDataEvent(data: DataModel) {
     this.dispatchEvent(
-      new CustomEvent('returned-data-error', {
+      new CustomEvent('returned-data', {
         detail: {
-          error: event.detail.error,
+          data,
         },
         bubbles: true,
         composed: true,
@@ -102,13 +102,13 @@ export class DataManagerController extends LitElement {
   }
 
   /**
-   * Sent Event with the API returned-data
+   * Sent Event with the ERROR of API
    */
-  public _returnedDataEvent(data: DataModel): void {
+  public _onRequestError(event: any) {
     this.dispatchEvent(
-      new CustomEvent('returned-data', {
+      new CustomEvent('returned-data-error', {
         detail: {
-          data,
+          error: event.detail.error,
         },
         bubbles: true,
         composed: true,

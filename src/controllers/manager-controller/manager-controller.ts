@@ -29,25 +29,25 @@ export class ManagerController extends LitElement {
    * The host to connect to API.
    */
   @property({type: String})
-  private host: string;
+  host: string;
 
   /**
    * The path to query API.
    */
   @property({type: String})
-  private path: string;
+  path: string;
 
   /**
    * Header connction to API Request
    */
   @property({type: Object})
-  private headers: object;
+  headers: object;
 
   /**
    * Body connection to API Request
    */
   @property({type: String})
-  private body: string;
+  body: string;
 
   /**
    * Parameters connection to API Request
@@ -59,7 +59,7 @@ export class ManagerController extends LitElement {
    * Method of connection to API Request
    */
   @property({type: String})
-  private method: string;
+  method: string;
 
   constructor() {
     super();
@@ -74,7 +74,7 @@ export class ManagerController extends LitElement {
   /**
    * Sent Event with the data to mange the app
    */
-  private _dataReturned(event: CustomEvent): void {
+  public _dataReturned(event: any): void {
     this.dispatchEvent(
       new CustomEvent('data', {
         detail: {
@@ -89,7 +89,7 @@ export class ManagerController extends LitElement {
   /**
    * Sent Event with the ERROR of API
    */
-  private _dataReturnedError(event: CustomEvent): void {
+  public _dataReturnedError(event: any): void {
     this.dispatchEvent(
       new CustomEvent('data', {
         detail: {

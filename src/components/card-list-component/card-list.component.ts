@@ -49,25 +49,25 @@ export class CardListComponent extends LitElement {
    * Check if have data to load in de card profile
    */
   @property({type: Boolean})
-  public isEmpty = false;
+  isEmpty = false;
 
   /**
    * Its the first time loaded
    */
   @property({type: Boolean})
-  private firstTime = true;
+  firstTime = true;
 
   /**
    * Card Id Active
    */
   @property({type: String})
-  private cardActive = '';
+  cardActive = '';
 
   /**
    * Getter/Setter paginationData
    */
   @property({type: Array})
-  private _cardlistData: object[] = [];
+  _cardlistData: object[] = [];
 
   /**
    * Data to create the pagination
@@ -75,7 +75,7 @@ export class CardListComponent extends LitElement {
   @property({
     type: Array,
   })
-  private set cardlistData(value: object[]) {
+  set cardlistData(value: object[]) {
     const oldVal: object[] = this._cardlistData;
     if (value === undefined) {
       this._cardlistData = [];
@@ -89,7 +89,7 @@ export class CardListComponent extends LitElement {
     }
   }
 
-  private get cardlistData() {
+  get cardlistData() {
     return this._cardlistData;
   }
 
@@ -102,7 +102,7 @@ export class CardListComponent extends LitElement {
    *
    * @return {TemplateResult} HTML of cardlist and cardprofile
    */
-  private _generateCardListHTML(): TemplateResult {
+  public _generateCardListHTML(): TemplateResult {
     const cardListHTML: TemplateResult = html`
       <div
         class="container__card-list"
@@ -122,7 +122,7 @@ export class CardListComponent extends LitElement {
    *
    * @return {TemplateResult} HTML of cardprofile
    */
-  private _generateCardProfileHTML(): TemplateResult[] {
+  public _generateCardProfileHTML(): TemplateResult[] {
     const cardProfileHTML: TemplateResult[] = this.cardlistData.map(
       (item: object) => {
         return html`
@@ -154,7 +154,7 @@ export class CardListComponent extends LitElement {
   /**
    * Update Active Card
    */
-  _updateCardActive(event: CustomEvent): void {
+  private _updateCardActive(event: CustomEvent): void {
     this.cardActive = event.detail.data;
   }
 }

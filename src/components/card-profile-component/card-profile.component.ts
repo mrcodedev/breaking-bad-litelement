@@ -263,7 +263,7 @@ export class CardProfileComponent extends LitElement {
    * Data of the card
    */
   @property({type: Object})
-  cardprofileData!: DataModel;
+  cardprofileData: any;
 
   /**
    * Id of the card
@@ -304,7 +304,7 @@ export class CardProfileComponent extends LitElement {
   /**
    * Open Select Card
    */
-  private _cardActionOpen(data: string): void {
+  public _cardActionOpen(data: string): void {
     if (data !== undefined) {
       this.cardActive = data;
     } else {
@@ -315,7 +315,7 @@ export class CardProfileComponent extends LitElement {
   /**
    * Close the select card
    */
-  private _cardActionClose(): void {
+  public _cardActionClose(): void {
     this.cardStatus = !this.cardStatus;
     this.cardActive = '';
   }
@@ -325,14 +325,14 @@ export class CardProfileComponent extends LitElement {
    *
    * @return {Boolean} The card is active
    */
-  private _isActiveContainerCard(cardStatus: boolean): boolean {
+  public _isActiveContainerCard(cardStatus: boolean): boolean {
     return cardStatus ? true : false;
   }
 
   /**
    * Check if the card is active
    */
-  private _checkActiveCard(actualValue: string): void {
+  public _checkActiveCard(actualValue: string): void {
     parseInt(this.cardprofileData.id) === parseInt(actualValue)
       ? (this.cardStatus = true)
       : (this.cardStatus = false);

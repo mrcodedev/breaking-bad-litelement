@@ -107,7 +107,6 @@ suite('Data-Provider testing', () => {
 
   describe('Using method fetch in the life cycle', () => {
     const el = new DataProviderController();
-    const generateRequestSpy = sinon.spy(el, 'connectedCallback');
 
     beforeEach(() => {
       el.connectedCallback();

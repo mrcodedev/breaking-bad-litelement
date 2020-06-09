@@ -1,6 +1,4 @@
-import {DataProviderController} from './../data-provider-controller/data-provider-controller';
 import {DataManagerController} from './data-manager-controller';
-import {DataModel, DataModelAPI} from '../../models/data-model.interface';
 
 import {fixture, html, expect} from '@open-wc/testing';
 import sinon from 'sinon';
@@ -11,8 +9,6 @@ mocha.setup('bdd');
 const assert = chai.assert;
 
 //Variables
-let firedEvent = false;
-
 const HOST = 'https://www.breakingbadapi.com/api/';
 const PATH = 'characters';
 const HEADERS = '{}';
@@ -104,11 +100,6 @@ suite('Data-Manager Controller', () => {
       describe('Listen the event and listen success', () => {
         el.addEventListener('request-success', el._onRequestSuccess);
 
-        afterEach(() => {
-          firedEvent = false;
-          sinon.restore();
-        });
-
         it('Should be fire request-success event', () => {
           expect(successEvent).is.calledOnce;
         });
@@ -137,11 +128,6 @@ suite('Data-Manager Controller', () => {
 
       describe('Listen the event and listen error', () => {
         el.addEventListener('request-error', el._onRequestError);
-
-        afterEach(() => {
-          firedEvent = false;
-          sinon.restore();
-        });
 
         it('Should be fire request-error event', () => {
           expect(errorEvent).is.calledOnce;

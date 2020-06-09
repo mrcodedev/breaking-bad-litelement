@@ -56,7 +56,7 @@ const MOCK_API = [
 
 //Methods
 const jsonOk = (body: object): Promise<Response> => {
-  const mockResponse: Response = new window.Response(JSON.stringify(BODY), {
+  const mockResponse: Response = new window.Response(JSON.stringify(body), {
     status: 200,
     headers: {
       'Content-type': 'application/json',
@@ -67,7 +67,7 @@ const jsonOk = (body: object): Promise<Response> => {
 };
 
 const jsonError = (): Promise<Response> => {
-  const mockResponse: Response = new window.Response('', {
+  const mockResponse: Response = new window.Response(JSON.stringify(BODY), {
     status: 400,
     headers: {
       'Content-type': 'application/json',
@@ -81,7 +81,7 @@ const fireEvent = (): void => {
   firedEvent = true;
 };
 
-describe('Data-Provider testing', () => {
+suite('Data-Provider testing', () => {
   const el = new DataProviderController();
 
   el.host = HOST;
@@ -106,6 +106,7 @@ describe('Data-Provider testing', () => {
   });
 
   describe('Using method fetch in the life cycle', () => {
+    const el = new DataProviderController();
     const generateRequestSpy = sinon.spy(el, 'connectedCallback');
 
     beforeEach(() => {
@@ -114,10 +115,6 @@ describe('Data-Provider testing', () => {
 
     afterEach(() => {
       sinon.restore();
-    });
-
-    it('Should be call connectedCallback', () => {
-      assert.isTrue(generateRequestSpy.calledOnce);
     });
 
     describe('Fetching OK and sending a event', () => {

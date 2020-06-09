@@ -29,37 +29,37 @@ export class DataManagerController extends LitElement {
    * The host to connect to API.
    */
   @property({type: String})
-  private host = '';
+  public host = '';
 
   /**
    * The path to query API.
    */
   @property({type: String})
-  private path = '';
+  public path = '';
 
   /**
    * Header connction to API Request
    */
   @property({type: Object})
-  private headers = {};
+  public headers = {};
 
   /**
    * Body connection to API Request
    */
   @property({type: String})
-  private body = '';
+  public body = '';
 
   /**
    * Parameters connection to API Request
    */
   @property({type: String})
-  private params = '';
+  public params = '';
 
   /**
    * Method of connection to API Request
    */
   @property({type: String})
-  method = '';
+  public method = '';
 
   constructor() {
     super();
@@ -68,7 +68,7 @@ export class DataManagerController extends LitElement {
   /**
    * Get de API data and transform the data and fire event
    */
-  private _onRequestSuccess(event: CustomEvent): void {
+  public _onRequestSuccess(event: any): void {
     const data = event.detail.data.map((character: DataModelAPI) => {
       return {
         id: character.char_id,
@@ -87,13 +87,13 @@ export class DataManagerController extends LitElement {
   }
 
   /**
-   * Sent Event with the API returned-data
+   * Sent Event with the ERROR of API
    */
-  private _returnedDataEvent(data: DataModel): void {
+  public _onRequestError(event: any) {
     this.dispatchEvent(
-      new CustomEvent('returned-data', {
+      new CustomEvent('returned-data-error', {
         detail: {
-          data,
+          error: event.detail.error,
         },
         bubbles: true,
         composed: true,
@@ -102,13 +102,13 @@ export class DataManagerController extends LitElement {
   }
 
   /**
-   * Sent Event with the ERROR of API
+   * Sent Event with the API returned-data
    */
-  private _onRequestError(event: CustomEvent): void {
+  public _returnedDataEvent(data: DataModel): void {
     this.dispatchEvent(
-      new CustomEvent('returned-data-error', {
+      new CustomEvent('returned-data', {
         detail: {
-          error: event.detail.error,
+          data,
         },
         bubbles: true,
         composed: true,

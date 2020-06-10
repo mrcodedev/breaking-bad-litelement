@@ -172,13 +172,13 @@ export class CardProfileComponent extends LitElement {
     return html`
       <div
         class="container__card"
-        ?active="${this._isActiveContainerCard(this.cardStatus)}"
+        ?active="${this.isActiveContainerCard(this.cardStatus)}"
       >
         <div class="container__image-block">
           <div
             class="card__detail-icon"
             @click="${(event: MouseEvent) =>
-              this._cardActionOpen(
+              this.cardActionOpen(
                 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
                 (<HTMLInputElement>event.target).dataset.id!
               )}"
@@ -207,11 +207,11 @@ export class CardProfileComponent extends LitElement {
           <div class="container__detail-block">
             <div
               class="detail-block"
-              ?active="${this._isActiveContainerCard(this.cardStatus)}"
+              ?active="${this.isActiveContainerCard(this.cardStatus)}"
             >
               <div
                 class="detail-block__icon"
-                @click="${this._cardActionClose}"
+                @click="${this.cardActionClose}"
                 data-id="${this.cardprofileData.id}"
               >
                 <img
@@ -292,8 +292,8 @@ export class CardProfileComponent extends LitElement {
     this._cardActive = value;
     this.requestUpdate('cardActive', oldVal);
     if (oldVal !== value) {
-      this._cardActiveEvent();
-      this._checkActiveCard(this.cardActive);
+      this.cardActiveEvent();
+      this.checkActiveCard(this.cardActive);
     }
   }
 
@@ -304,18 +304,14 @@ export class CardProfileComponent extends LitElement {
   /**
    * Open Select Card
    */
-  public _cardActionOpen(data: string): void {
-    if (data !== undefined) {
-      this.cardActive = data;
-    } else {
-      this.cardActive = '';
-    }
+  public cardActionOpen(data: string): void {
+    this.cardActive = data;
   }
 
   /**
    * Close the select card
    */
-  public _cardActionClose(): void {
+  public cardActionClose(): void {
     this.cardStatus = !this.cardStatus;
     this.cardActive = '';
   }
@@ -325,14 +321,14 @@ export class CardProfileComponent extends LitElement {
    *
    * @return {Boolean} The card is active
    */
-  public _isActiveContainerCard(cardStatus: boolean): boolean {
+  public isActiveContainerCard(cardStatus: boolean): boolean {
     return cardStatus ? true : false;
   }
 
   /**
    * Check if the card is active
    */
-  public _checkActiveCard(actualValue: string): void {
+  public checkActiveCard(actualValue: string): void {
     parseInt(this.cardprofileData.id) === parseInt(actualValue)
       ? (this.cardStatus = true)
       : (this.cardStatus = false);
@@ -341,7 +337,7 @@ export class CardProfileComponent extends LitElement {
   /**
    * Dispatch event to the data to show
    */
-  private _cardActiveEvent(): void {
+  public cardActiveEvent(): void {
     this.dispatchEvent(
       new CustomEvent('card-active', {
         detail: {

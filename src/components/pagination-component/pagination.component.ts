@@ -61,13 +61,13 @@ export class PaginationComponent extends LitElement {
   `;
 
   @property({type: Number})
-  private _pageLimit = 10;
+  _pageLimit = 10;
 
   /**
    * Elements limit per page
    */
   @property({type: Number})
-  private set pageLimit(value) {
+  set pageLimit(value) {
     if (value !== undefined && value > 0) {
       this._pageLimit = value;
     }
@@ -77,7 +77,7 @@ export class PaginationComponent extends LitElement {
     this.requestUpdate('pageLimit', oldVal);
   }
 
-  private get pageLimit() {
+  get pageLimit() {
     return this._pageLimit;
   }
 
@@ -85,25 +85,25 @@ export class PaginationComponent extends LitElement {
    * Total number of elements in the query
    */
   @property({type: Number})
-  private numberElements = 0;
+  numberElements = 0;
 
   /**
    * What is the page that is active
    */
   @property({type: Number})
-  private activePageIndex = 0;
+  activePageIndex = 0;
 
   /**
    * Array with the pages to show with information about each one
    */
   @property({type: Array})
-  private numberPages: PageLinks[] = [];
+  numberPages: PageLinks[] = [];
 
   /**
    * Getter/Setter paginationData
    */
   @property({type: Array})
-  private _paginationData: object[] = [];
+  _paginationData: object[] = [];
 
   /**
    * Data to create the pagination
@@ -111,7 +111,7 @@ export class PaginationComponent extends LitElement {
   @property({
     type: Array,
   })
-  private set paginationData(value) {
+  set paginationData(value) {
     const oldVal: object[] = this._paginationData;
     this._paginationData = value;
     this.requestUpdate('paginationData', oldVal);
@@ -120,7 +120,7 @@ export class PaginationComponent extends LitElement {
       this._updateDataPages();
     }
   }
-  private get paginationData() {
+  get paginationData() {
     return this._paginationData;
   }
 
@@ -130,7 +130,7 @@ export class PaginationComponent extends LitElement {
   @property({
     type: Array,
   })
-  private dataPage: object[] = [];
+  dataPage: object[] = [];
 
   constructor() {
     super();
@@ -139,9 +139,9 @@ export class PaginationComponent extends LitElement {
   render() {
     return html`
       <div id="pagination" class="container-pagination">
-        ${this._generatePreviousActionHTML()}
-        ${this.numberPages ? this._generateLinkPagesHTML() : ''}
-        ${this._generateNextActionHTML()}
+        ${this.generatePreviousActionHTML()}
+        ${this.numberPages ? this.generateLinkPagesHTML() : ''}
+        ${this.generateNextActionHTML()}
       </div>
     `;
   }
@@ -151,10 +151,10 @@ export class PaginationComponent extends LitElement {
    *
    * @return {object} Data previous page HTML
    */
-  private _generatePreviousActionHTML(): object {
+  public generatePreviousActionHTML(): object {
     const previousAction: TemplateResult = html`<a
       id="previous"
-      @click="${this._previousPage}"
+      @click="${this.previousPage}"
       >&laquo;</a
     >`;
 
@@ -166,10 +166,10 @@ export class PaginationComponent extends LitElement {
    *
    * @return {object} Data next page HTML
    */
-  private _generateNextActionHTML(): object {
+  public generateNextActionHTML(): object {
     const nextAction: TemplateResult = html`<a
       id="next"
-      @click="${this._nextPage}"
+      @click="${this.nextPage}"
       >&raquo;</a
     >`;
 
@@ -181,13 +181,13 @@ export class PaginationComponent extends LitElement {
    *
    * @return {object} Number pages to show in HTML
    */
-  private _generateLinkPagesHTML(): object[] {
+  public generateLinkPagesHTML(): object[] {
     const pagesMap: TemplateResult[] = this.numberPages.map(
       (item: PageLinks) => {
         return html`<a
           id="${item.id}"
-          ?active="${this._isActive(item.active)}"
-          @click="${() => this._changeActivePage(item)}"
+          ?active="${this.isActive(item.active)}"
+          @click="${() => this.changeActivePage(item)}"
           >${item.page}</a
         >`;
       }
@@ -199,7 +199,7 @@ export class PaginationComponent extends LitElement {
   /**
    * Generate the data of pages in Array
    */
-  private _generatePageIndexes(): void {
+  public generatePageIndexes(): void {
     let numberPages: number = this.numberElements / this.pageLimit;
     numberPages =
       numberPages % 1 === 0 ? numberPages : Math.floor(numberPages) + 1;
@@ -218,13 +218,13 @@ export class PaginationComponent extends LitElement {
     );
 
     this.numberPages = result;
-    this._pageEvent();
+    this.pageEvent();
   }
 
   /**
    * Change the active page
    */
-  private _changeActivePage(event: PageLinks): void {
+  public changeActivePage(event: PageLinks): void {
     if (event.page - 1 !== this.activePageIndex) {
       this.activePageIndex = event.id;
       this._updateDataPages('change-active-page');
@@ -234,7 +234,7 @@ export class PaginationComponent extends LitElement {
   /**
    * Action to previous page
    */
-  private _previousPage(): void {
+  public previousPage(): void {
     if (this.activePageIndex >= 1) {
       this.activePageIndex = this.activePageIndex - 1;
       this._updateDataPages('previous-page');
@@ -244,7 +244,7 @@ export class PaginationComponent extends LitElement {
   /**
    * Action to next page
    */
-  private _nextPage(): void {
+  public nextPage(): void {
     if (this.activePageIndex < this.numberPages.length - 1) {
       this.activePageIndex = ++this.activePageIndex;
       this._updateDataPages('next-page');
@@ -256,7 +256,7 @@ export class PaginationComponent extends LitElement {
    *
    * @return {boolean} show if page is active
    */
-  private _isActive(active: boolean): boolean {
+  public isActive(active: boolean): boolean {
     return active ? true : false;
   }
 
@@ -293,13 +293,13 @@ export class PaginationComponent extends LitElement {
       }
     }
 
-    this._generatePageIndexes();
+    this.generatePageIndexes();
   }
 
   /**
    * Dispatch event to the data to show
    */
-  private _pageEvent(): void {
+  public pageEvent(): void {
     this.dispatchEvent(
       new CustomEvent('data-page', {
         detail: {

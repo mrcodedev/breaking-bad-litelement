@@ -28,7 +28,7 @@ suite('footer-component', () => {
         <p class="author">
           Developed and designed by
           <a
-            href="http://www.mrcodedev.dev"
+            href="http://www.mrcodedev.com"
             target="_blank"
           >
             MrCodeDev

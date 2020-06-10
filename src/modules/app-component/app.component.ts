@@ -36,10 +36,10 @@ export class AppComponent extends LitElement {
         .stateSpinner="${this.showSpinner}"
       ></spinner-component>
       <header-component></header-component>
-      <manager-controller @data="${this._updateData}"></manager-controller>
+      <manager-controller @data="${this.updateData}"></manager-controller>
       <search-component
         .searchData="${this.data}"
-        @data-search="${this._dataSearch}"
+        @data-search="${this.dataSearch}"
       ></search-component>
       <pagination-component
         .paginationData="${this.dataFiltered}"
@@ -55,25 +55,25 @@ export class AppComponent extends LitElement {
    * Data return of API
    */
   @property({type: Array})
-  private data: DataModel[] = [];
+  data: DataModel[] = [];
 
   /**
    * Data Filtered of Search
    */
   @property({type: Array})
-  private dataFiltered: DataModel[] = [];
+  dataFiltered: DataModel[] = [];
 
   /**
    * Data Elements of Pagination
    */
   @property({type: Array})
-  private dataPage: DataModel[] = [];
+  dataPage: DataModel[] = [];
 
   /**
    * Show spinner of not
    */
   @property({type: Boolean})
-  private showSpinner = true;
+  showSpinner = true;
 
   constructor() {
     super();
@@ -82,7 +82,7 @@ export class AppComponent extends LitElement {
   /**
    * Update data of API
    */
-  private _updateData(event: CustomEvent): void {
+  public updateData(event: CustomEvent): void {
     this.data = event.detail.data;
     this.dataFiltered = event.detail.data;
   }
@@ -90,14 +90,14 @@ export class AppComponent extends LitElement {
   /**
    * Update data of search
    */
-  private _dataSearch(event: CustomEvent): void {
+  public dataSearch(event: CustomEvent): void {
     this.dataFiltered = event.detail.data;
   }
 
   /**
    * Update data of pagination
    */
-  private _dataPage(event: CustomEvent): void {
+  public _dataPage(event: CustomEvent): void {
     this.dataPage = event.detail.data;
     if (event.detail.data.length > 0) {
       this.showSpinner = false;

@@ -85,18 +85,18 @@ export class DataProviderController extends LitElement {
         }
       })
       .then((response) => {
-        this._requestSuccess(response);
+        this.requestSuccess(response);
       })
       .catch((error: object) => {
         controller.abort();
-        this._requestError(error);
+        this.requestError(error);
       });
   }
 
   /**
    * When the Request is success pass the data
    */
-  public _requestSuccess(apiData: object): void {
+  public requestSuccess(apiData: object): void {
     this.dispatchEvent(
       new CustomEvent('request-success', {
         bubbles: true,
@@ -111,7 +111,7 @@ export class DataProviderController extends LitElement {
   /**
    * When the Request is unsuccess pass the error
    */
-  public _requestError(errorData: object): void {
+  public requestError(errorData: object): void {
     this.dispatchEvent(
       new CustomEvent('request-error', {
         bubbles: true,

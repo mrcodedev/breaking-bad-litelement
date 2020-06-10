@@ -1,5 +1,3 @@
-//BUENO
-
 import {DataProviderController} from './data-provider-controller';
 import {expect} from '@open-wc/testing';
 import sinon from 'sinon';

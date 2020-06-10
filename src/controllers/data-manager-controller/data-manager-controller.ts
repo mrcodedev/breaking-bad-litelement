@@ -18,8 +18,8 @@ export class DataManagerController extends LitElement {
         .body="${this.body}"
         .params="${this.params}"
         .method="${this.method}"
-        @request-success="${this._onRequestSuccess}"
-        @request-error="${this._onRequestError}"
+        @request-success="${this.onRequestSuccess}"
+        @request-error="${this.onRequestError}"
       >
       </data-provider-controller>
     `;
@@ -68,7 +68,7 @@ export class DataManagerController extends LitElement {
   /**
    * Get de API data and transform the data and fire event
    */
-  public _onRequestSuccess(event: any): void {
+  public onRequestSuccess(event: any): void {
     const data = event.detail.data.map((character: DataModelAPI) => {
       return {
         id: character.char_id,
@@ -83,13 +83,13 @@ export class DataManagerController extends LitElement {
       };
     });
 
-    this._returnedDataEvent(data);
+    this.returnedDataEvent(data);
   }
 
   /**
    * Sent Event with the API returned-data
    */
-  public _returnedDataEvent(data: DataModel) {
+  public returnedDataEvent(data: DataModel) {
     this.dispatchEvent(
       new CustomEvent('returned-data', {
         detail: {
@@ -104,7 +104,7 @@ export class DataManagerController extends LitElement {
   /**
    * Sent Event with the ERROR of API
    */
-  public _onRequestError(event: any) {
+  public onRequestError(event: any) {
     this.dispatchEvent(
       new CustomEvent('returned-data-error', {
         detail: {

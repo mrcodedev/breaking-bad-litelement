@@ -1,6 +1,6 @@
 import {DataManagerController} from './data-manager-controller';
 
-import {fixture, html, expect} from '@open-wc/testing';
+import {fixture, html, expect, oneEvent} from '@open-wc/testing';
 import sinon from 'sinon';
 
 //Testing setup
@@ -79,7 +79,7 @@ suite('Data-Manager Controller', () => {
   describe('Testing Events', () => {
     describe('Testing onRequestSuccess', () => {
       const el = new DataManagerController();
-      const successEvent = sinon.spy(el, '_onRequestSuccess');
+      const successEvent = sinon.spy(el, 'onRequestSuccess');
 
       beforeEach(() => {
         el.dispatchEvent(
@@ -94,11 +94,12 @@ suite('Data-Manager Controller', () => {
       });
 
       afterEach(() => {
+        el.removeEventListener('request-success', el.onRequestSuccess);
         sinon.restore();
       });
 
       describe('Listen the event and listen success', () => {
-        el.addEventListener('request-success', el._onRequestSuccess);
+        el.addEventListener('request-success', el.onRequestSuccess);
 
         it('Should be fire request-success event', () => {
           expect(successEvent).is.calledOnce;
@@ -108,7 +109,7 @@ suite('Data-Manager Controller', () => {
 
     describe('Testing onRequestError', () => {
       const el = new DataManagerController();
-      const errorEvent = sinon.spy(el, '_onRequestError');
+      const errorEvent = sinon.spy(el, 'onRequestError');
 
       beforeEach(() => {
         el.dispatchEvent(
@@ -123,11 +124,12 @@ suite('Data-Manager Controller', () => {
       });
 
       afterEach(() => {
+        el.removeEventListener('request-error', el.onRequestError);
         sinon.restore();
       });
 
       describe('Listen the event and listen error', () => {
-        el.addEventListener('request-error', el._onRequestError);
+        el.addEventListener('request-error', el.onRequestError);
 
         it('Should be fire request-error event', () => {
           expect(errorEvent).is.calledOnce;

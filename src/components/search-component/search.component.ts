@@ -86,19 +86,19 @@ export class SearchComponent extends LitElement {
    * Data to search
    */
   @property({type: Array})
-  private searchData: DataModel[] = [];
+  searchData: DataModel[] = [];
 
   /**
    * Value to search
    */
   @property({type: String})
-  private valueToSearch = '';
+  valueToSearch = '';
 
   /**
    * Array filtered data searched
    */
   @property({type: Array})
-  private filteredData: object[] = [];
+  filteredData: object[] = [];
 
   constructor() {
     super();
@@ -107,7 +107,7 @@ export class SearchComponent extends LitElement {
   /**
    * Generate HTML previous page with actions
    */
-  private _assignAndSearch(data: string): void {
+  public _assignAndSearch(data: string): void {
     this.valueToSearch = data;
     this._searchFilter();
   }
@@ -133,14 +133,14 @@ export class SearchComponent extends LitElement {
             .includes(this.valueToSearch.toLocaleLowerCase())
       );
 
-      this._searchEvent();
+      this.searchEvent();
     }
   }
 
   /**
    * Generate HTML previous page with actions
    */
-  private _searchEvent(): void {
+  public searchEvent(): void {
     this.dispatchEvent(
       new CustomEvent('data-search', {
         detail: {

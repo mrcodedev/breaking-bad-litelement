@@ -78,7 +78,7 @@ suite('Manager Controller', () => {
   describe('Testing Events', () => {
     describe('Testing _dataReturned', () => {
       const el = new ManagerController();
-      const successEvent = sinon.spy(el, '_dataReturned');
+      const successEvent = sinon.spy(el, 'dataReturned');
 
       beforeEach(() => {
         el.dispatchEvent(
@@ -97,7 +97,7 @@ suite('Manager Controller', () => {
       });
 
       describe('Listen the event and listen success', () => {
-        el.addEventListener('returned-data', el._dataReturned);
+        el.addEventListener('returned-data', el.dataReturned);
 
         it('Should be fire request-success event', () => {
           expect(successEvent).is.calledOnce;
@@ -107,7 +107,7 @@ suite('Manager Controller', () => {
 
     describe('Testing returned-data-error', () => {
       const el = new ManagerController();
-      const errorEvent = sinon.spy(el, '_dataReturnedError');
+      const errorEvent = sinon.spy(el, 'dataReturnedError');
 
       beforeEach(() => {
         el.dispatchEvent(
@@ -126,7 +126,7 @@ suite('Manager Controller', () => {
       });
 
       describe('Listen the event and listen error', () => {
-        el.addEventListener('returned-data-error', el._dataReturnedError);
+        el.addEventListener('returned-data-error', el.dataReturnedError);
 
         it('Should be fire returned-data-error event', () => {
           expect(errorEvent).is.calledOnce;

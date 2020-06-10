@@ -2,12 +2,27 @@ import {CardListComponent} from './card-list.component';
 
 import {fixture, html, expect} from '@open-wc/testing';
 import sinon from 'sinon';
-import {DataModel} from '../../models/data-model.interface';
 
 //Testing setup
 mocha.setup('bdd');
 
 const assert = chai.assert;
+
+const DATA_MOCK = {
+  birthday: '13-08-1985',
+  id: '1',
+  image: 'http://www.fakeimage.com',
+  name: 'Jose',
+  nickname: 'MrCodeDev',
+  occupation: [],
+  playedBy: 'me',
+  sessions: [],
+  status: 'very alive',
+};
+
+const MOCK_EVENT = new CustomEvent('mock-event', {
+  detail: DATA_MOCK,
+});
 
 suite('Card List Component', () => {
   describe('Component initialized and renderized', () => {
@@ -24,10 +39,15 @@ suite('Card List Component', () => {
 
   describe('cardlistData', () => {
     const el = new CardListComponent();
+    el.cardlistData = [{id: 1}, {id: 2}];
 
     describe('cardlistData with values', () => {
+      const updateCardSpy = sinon.spy(el, 'updateCardActive');
+
       beforeEach(() => {
+        el.generateCardListHTML();
         el.cardlistData = [{id: 1}, {id: 2}];
+        el.updateCardActive(MOCK_EVENT);
       });
 
       afterEach(() => {
@@ -39,12 +59,15 @@ suite('Card List Component', () => {
       });
 
       describe('Call _generateCardProfileHTML', () => {
-        const successEvent = sinon.spy(el, '_generateCardProfileHTML');
-        el._generateCardProfileHTML();
+        const successEvent = sinon.spy(el, 'generateCardProfileHTML');
 
         it('Should be called _generateCardProfileHTML', () => {
           expect(successEvent).to.be.calledOnce;
         });
+      });
+
+      it('Should be called updateCardActive', () => {
+        expect(updateCardSpy).to.be.calledOnce;
       });
     });
 
@@ -62,24 +85,4 @@ suite('Card List Component', () => {
       });
     });
   });
-
-  // describe('cardlistData values is empty', () => {
-  //   const element = new CardListComponent();
-  //   const calledHTML = sinon.spy(element, '_generateCardProfileHTML');
-
-  //   element.firstTime = true;
-  //   beforeEach(() => {
-  //     element.cardlistData = [];
-  //   });
-
-  //   afterEach(() => {
-  //     sinon.restore();
-  //   });
-
-  //   describe('mimimimi', () => {
-  //     it('Should be memee', async () => {
-  //       expect(calledHTML).is.not.called;
-  //     });
-  //   });
-  // });
 });

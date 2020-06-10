@@ -9,6 +9,8 @@ mocha.setup('bdd');
 const assert = chai.assert;
 
 //Variables
+let firedEvent = false;
+
 const HOST = 'https://www.breakingbadapi.com/api/';
 const PATH = 'characters';
 const HEADERS = '{}';
@@ -51,6 +53,14 @@ const MOCK_API = [
   },
 ];
 
+const MOCK_EVENT_DATA: CustomEvent = new CustomEvent('returned-data', {
+  detail: MOCK_API,
+});
+
+const fireEvent = (): void => {
+  firedEvent = true;
+};
+
 suite('Manager Controller', () => {
   describe('Component initialized and renderized', () => {
     test('Should be defined', () => {
@@ -78,7 +88,6 @@ suite('Manager Controller', () => {
   describe('Testing Events', () => {
     describe('Testing _dataReturned', () => {
       const el = new ManagerController();
-      const successEvent = sinon.spy(el, 'dataReturned');
 
       beforeEach(() => {
         el.dispatchEvent(
@@ -97,17 +106,27 @@ suite('Manager Controller', () => {
       });
 
       describe('Listen the event and listen success', () => {
-        el.addEventListener('returned-data', el.dataReturned);
+        firedEvent = false;
+        el.addEventListener('returned-data', fireEvent);
 
         it('Should be fire request-success event', () => {
-          expect(successEvent).is.calledOnce;
+          expect(firedEvent).to.be.true;
+          el.dataReturned(MOCK_EVENT_DATA);
+        });
+
+        describe('Event dataReturned', () => {
+          el.addEventListener('data', fireEvent);
+          el.dataReturnedError(MOCK_EVENT_DATA);
+
+          it('Should be data event is fired', () => {
+            expect(firedEvent).to.be.true;
+          });
         });
       });
     });
 
     describe('Testing returned-data-error', () => {
       const el = new ManagerController();
-      const errorEvent = sinon.spy(el, 'dataReturnedError');
 
       beforeEach(() => {
         el.dispatchEvent(
@@ -126,10 +145,20 @@ suite('Manager Controller', () => {
       });
 
       describe('Listen the event and listen error', () => {
-        el.addEventListener('returned-data-error', el.dataReturnedError);
+        firedEvent = false;
+        el.addEventListener('returned-error', fireEvent);
 
-        it('Should be fire returned-data-error event', () => {
-          expect(errorEvent).is.calledOnce;
+        it('Should be fire returned-data-error event', async () => {
+          expect(firedEvent).to.be.true;
+        });
+
+        describe('Event dataReturnedError', () => {
+          el.addEventListener('data', fireEvent);
+          el.dataReturnedError(MOCK_EVENT_DATA);
+
+          it('Should be data event is fired', () => {
+            expect(firedEvent).to.be.true;
+          });
         });
       });
     });

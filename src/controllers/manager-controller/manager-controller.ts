@@ -74,7 +74,7 @@ export class ManagerController extends LitElement {
   /**
    * Sent Event with the data to mange the app
    */
-  public dataReturned(event: any): void {
+  public dataReturned(event: CustomEvent): void {
     this.dispatchEvent(
       new CustomEvent('data', {
         detail: {
@@ -89,7 +89,7 @@ export class ManagerController extends LitElement {
   /**
    * Sent Event with the ERROR of API
    */
-  public dataReturnedError(event: any): void {
+  public dataReturnedError(event: CustomEvent): void {
     this.dispatchEvent(
       new CustomEvent('data', {
         detail: {

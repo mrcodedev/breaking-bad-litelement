@@ -77,15 +77,17 @@ export class CardListComponent extends LitElement {
   })
   set cardlistData(value: object[]) {
     const oldVal: object[] = this._cardlistData;
+
     if (value === undefined) {
       this._cardlistData = [];
     } else {
       this._cardlistData = value;
     }
+
     this.requestUpdate('cardlistData', oldVal);
 
     if (oldVal !== value) {
-      this._isEmpty();
+      this.methodIsEmpty();
     }
   }
 
@@ -94,7 +96,7 @@ export class CardListComponent extends LitElement {
   }
 
   render() {
-    return html`${this._generateCardListHTML()}`;
+    return html`${this.generateCardListHTML()}`;
   }
 
   /**
@@ -102,14 +104,11 @@ export class CardListComponent extends LitElement {
    *
    * @return {TemplateResult} HTML of cardlist and cardprofile
    */
-  public _generateCardListHTML(): TemplateResult {
+  public generateCardListHTML(): TemplateResult {
     const cardListHTML: TemplateResult = html`
-      <div
-        class="container__card-list"
-        @card-active="${this._updateCardActive}"
-      >
+      <div class="container__card-list" @card-active="${this.updateCardActive}">
         ${this.cardlistData.length > 0
-          ? this._generateCardProfileHTML()
+          ? this.generateCardProfileHTML()
           : html``}
       </div>
     `;
@@ -122,7 +121,7 @@ export class CardListComponent extends LitElement {
    *
    * @return {TemplateResult} HTML of cardprofile
    */
-  public _generateCardProfileHTML(): TemplateResult[] {
+  public generateCardProfileHTML(): TemplateResult[] {
     const cardProfileHTML: TemplateResult[] = this.cardlistData.map(
       (item: object) => {
         return html`
@@ -140,7 +139,7 @@ export class CardListComponent extends LitElement {
   /**
    * Check if its first time to load and if have any elements in data
    */
-  private _isEmpty(): void {
+  public methodIsEmpty(): void {
     if (this.firstTime) {
       this.firstTime = false;
     } else {
@@ -154,7 +153,7 @@ export class CardListComponent extends LitElement {
   /**
    * Update Active Card
    */
-  private _updateCardActive(event: CustomEvent): void {
+  public updateCardActive(event: CustomEvent): void {
     this.cardActive = event.detail.data;
   }
 }

@@ -133,7 +133,6 @@ suite('Pagination Component', () => {
 
     describe('Data Pages with values', () => {
       el.paginationData = MOCK_DATA_API;
-      el.numberPages = NUMBER_PAGES_MOCK;
       el.pageLimit = 1;
       el.activePageIndex = 0;
 
@@ -188,7 +187,6 @@ suite('Pagination Component', () => {
 
       el.paginationData = MOCK_DATA_API;
       el.pageLimit = 30;
-      el.numberPages = NUMBER_PAGES_MOCK;
 
       describe('Launch method nextPage', () => {
         el.activePageIndex = 300;

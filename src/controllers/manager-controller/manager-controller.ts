@@ -91,7 +91,7 @@ export class ManagerController extends LitElement {
    */
   public dataReturnedError(event: CustomEvent): void {
     this.dispatchEvent(
-      new CustomEvent('data', {
+      new CustomEvent('data-error', {
         detail: {
           data: event.detail.error,
         },

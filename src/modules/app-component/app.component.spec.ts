@@ -1,3 +1,4 @@
+import {ManagerController} from './../../controllers/manager-controller/manager-controller';
 import {AppComponent} from './app.component';
 import {fixture, html, expect} from '@open-wc/testing';
 
@@ -194,6 +195,63 @@ suite('App Component', () => {
 
         it('Should be fired and called event and fire _dataPage without data', () => {
           expect(callDataPageSpy).to.be.calledOnce;
+        });
+      });
+    });
+  });
+
+  describe('Testing error-data', () => {
+    const el = new AppComponent();
+
+    describe('Fire error-event', () => {
+      const callErrorDataSpy = sinon.spy();
+
+      const callErrorMock = () => {
+        el.errorData(eventMOCK);
+        callErrorDataSpy();
+      };
+
+      const eventMOCK = new CustomEvent('data', {
+        detail: {
+          data: '2',
+        },
+      });
+
+      beforeEach(() => {
+        el.dispatchEvent(
+          new CustomEvent('data-error', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              data: 'a',
+            },
+          })
+        );
+      });
+
+      afterEach(() => {
+        sinon.restore();
+      });
+
+      describe('Listen the event error-data', () => {
+        el.addEventListener('data-error', callErrorMock);
+
+        it('Should be fired and called event and fire updateData', () => {
+          expect(callErrorDataSpy).to.be.calledOnce;
+        });
+      });
+
+      describe('Error data event status is true', () => {
+        beforeEach(() => {
+          el.render();
+        });
+
+        afterEach(() => {
+          sinon.restore();
+        });
+
+        it('Should be eventDataError status is true', () => {
+          expect(el.errorEventStatus).to.be.true;
         });
       });
     });

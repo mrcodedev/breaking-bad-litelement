@@ -22,7 +22,7 @@
     "docs:serve": "es-dev-server --root-dir=docs --node-resolve --watch",
     "analyze": "wca analyze \"src/**/*.ts\" --outFile custom-elements.json",
     "serve": "es-dev-server --app-index src/ --node-resolve --watch --open",
-    "test": "karma start karma.conf.cjs --coverage --timeout 10000000",
+    "test": "karma start karma.conf.cjs --coverage",
     "test:watch": "karma start karma.conf.cjs --auto-watch=true --single-run=false",
     "test:update-snapshots": "karma start karma.conf.cjs --update-snapshots",
     "test:prune-snapshots": "karma start karma.conf.cjs --prune-snapshots",

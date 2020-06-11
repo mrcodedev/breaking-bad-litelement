@@ -2,49 +2,649 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "my-element",
-      "path": "./src/my-element.ts",
-      "description": "An example element.",
+      "name": "card-profile",
+      "path": "./src/components/card-profile-component/card-profile.component.ts",
+      "description": "Card-Component\nElement showing pagination for elements",
       "attributes": [
         {
-          "name": "name",
-          "description": "The name to say \"Hello\" to.",
-          "type": "string",
-          "default": "\"World\""
+          "name": "cardprofileData",
+          "description": "Data of the card"
         },
         {
-          "name": "count",
-          "description": "The number of times the button has been clicked.",
-          "type": "number",
-          "default": "0"
+          "name": "cardProfile",
+          "description": "Id of the card",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "cardStatus",
+          "description": "Status of card, if open is true",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "cardActive",
+          "description": "Data to create the card",
+          "type": "string"
         }
       ],
       "properties": [
         {
-          "name": "name",
-          "attribute": "name",
-          "description": "The name to say \"Hello\" to.",
-          "type": "string",
-          "default": "\"World\""
+          "name": "cardprofileData",
+          "attribute": "cardprofileData",
+          "description": "Data of the card"
         },
         {
-          "name": "count",
-          "attribute": "count",
-          "description": "The number of times the button has been clicked.",
+          "name": "cardProfile",
+          "attribute": "cardProfile",
+          "description": "Id of the card",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "cardStatus",
+          "attribute": "cardStatus",
+          "description": "Status of card, if open is true",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "cardActive",
+          "attribute": "cardActive",
+          "description": "Data to create the card",
+          "type": "string"
+        }
+      ],
+      "events": [
+        {
+          "name": "card-active"
+        }
+      ]
+    },
+    {
+      "name": "card-list",
+      "path": "./src/components/card-list-component/card-list.component.ts",
+      "description": "Card-List\nList of cards to show into app",
+      "attributes": [
+        {
+          "name": "isEmpty",
+          "description": "Check if have data to load in de card profile",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "firstTime",
+          "description": "Its the first time loaded",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "cardActive",
+          "description": "Card Id Active",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "cardlistData",
+          "description": "Data to create the pagination",
+          "type": "object[]"
+        }
+      ],
+      "properties": [
+        {
+          "name": "isEmpty",
+          "attribute": "isEmpty",
+          "description": "Check if have data to load in de card profile",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "firstTime",
+          "attribute": "firstTime",
+          "description": "Its the first time loaded",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "cardActive",
+          "attribute": "cardActive",
+          "description": "Card Id Active",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "cardlistData",
+          "attribute": "cardlistData",
+          "description": "Data to create the pagination",
+          "type": "object[]"
+        }
+      ]
+    },
+    {
+      "name": "header-component",
+      "path": "./src/components/header-component/header.component.ts",
+      "description": "Header-Component\nHeader Component to show the logo"
+    },
+    {
+      "name": "footer-component",
+      "path": "./src/components/footer-component/footer.component.ts",
+      "description": "Footer-Component\nFooter Component to show footer text"
+    },
+    {
+      "name": "pagination-component",
+      "path": "./src/components/pagination-component/pagination.component.ts",
+      "description": "Pagination-Component\nElement showing pagination for elements",
+      "attributes": [
+        {
+          "name": "pageLimit",
+          "description": "Elements limit per page",
+          "type": "number"
+        },
+        {
+          "name": "numberElements",
+          "description": "Total number of elements in the query",
           "type": "number",
           "default": "0"
+        },
+        {
+          "name": "activePageIndex",
+          "description": "What is the page that is active",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "numberPages",
+          "description": "Array with the pages to show with information about each one",
+          "type": "PageLinks[]",
+          "default": "[]"
+        },
+        {
+          "name": "paginationData",
+          "description": "Data to create the pagination",
+          "type": "object[]"
+        },
+        {
+          "name": "dataPage",
+          "description": "Data to show per page",
+          "type": "object[]",
+          "default": "[]"
         }
       ],
-      "slots": [
+      "properties": [
         {
-          "name": "",
-          "description": "This element has a slot"
+          "name": "pageLimit",
+          "attribute": "pageLimit",
+          "description": "Elements limit per page",
+          "type": "number"
+        },
+        {
+          "name": "numberElements",
+          "attribute": "numberElements",
+          "description": "Total number of elements in the query",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "activePageIndex",
+          "attribute": "activePageIndex",
+          "description": "What is the page that is active",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "numberPages",
+          "attribute": "numberPages",
+          "description": "Array with the pages to show with information about each one",
+          "type": "PageLinks[]",
+          "default": "[]"
+        },
+        {
+          "name": "paginationData",
+          "attribute": "paginationData",
+          "description": "Data to create the pagination",
+          "type": "object[]"
+        },
+        {
+          "name": "dataPage",
+          "attribute": "dataPage",
+          "description": "Data to show per page",
+          "type": "object[]",
+          "default": "[]"
         }
       ],
-      "cssParts": [
+      "events": [
         {
-          "name": "button",
-          "description": "The button"
+          "name": "data-page"
+        }
+      ]
+    },
+    {
+      "name": "search-component",
+      "path": "./src/components/search-component/search.component.ts",
+      "description": "Search-Component\nSearcher to API",
+      "attributes": [
+        {
+          "name": "searchData",
+          "description": "Data to search",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "valueToSearch",
+          "description": "Value to search",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "filteredData",
+          "description": "Array filtered data searched",
+          "type": "object[]",
+          "default": "[]"
+        }
+      ],
+      "properties": [
+        {
+          "name": "searchData",
+          "attribute": "searchData",
+          "description": "Data to search",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "valueToSearch",
+          "attribute": "valueToSearch",
+          "description": "Value to search",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "filteredData",
+          "attribute": "filteredData",
+          "description": "Array filtered data searched",
+          "type": "object[]",
+          "default": "[]"
+        }
+      ],
+      "events": [
+        {
+          "name": "data-search"
+        }
+      ]
+    },
+    {
+      "name": "spinner-component",
+      "path": "./src/components/spinner-component/spinner.component.ts",
+      "description": "Spinner-Component\nSpinner show if data loading"
+    },
+    {
+      "name": "data-provider-controller",
+      "path": "./src/controllers/data-provider-controller/data-provider-controller.ts",
+      "description": "Data-Provider\nConnect to the API and return the data",
+      "attributes": [
+        {
+          "name": "host",
+          "description": "The host to connect to API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "path",
+          "description": "The path to query API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "headers",
+          "description": "Header connction to API Request",
+          "type": "object",
+          "default": "{}"
+        },
+        {
+          "name": "body",
+          "description": "Body connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "params",
+          "description": "Parameters connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "method",
+          "description": "Method of connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "host",
+          "attribute": "host",
+          "description": "The host to connect to API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "path",
+          "attribute": "path",
+          "description": "The path to query API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "headers",
+          "attribute": "headers",
+          "description": "Header connction to API Request",
+          "type": "object",
+          "default": "{}"
+        },
+        {
+          "name": "body",
+          "attribute": "body",
+          "description": "Body connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "params",
+          "attribute": "params",
+          "description": "Parameters connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "method",
+          "attribute": "method",
+          "description": "Method of connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "events": [
+        {
+          "name": "request-success"
+        },
+        {
+          "name": "request-error"
+        }
+      ]
+    },
+    {
+      "name": "data-manager-controller",
+      "path": "./src/controllers/data-manager-controller/data-manager-controller.ts",
+      "description": "Data-Manager-Controller\nReceive de data of data-provider-controller",
+      "attributes": [
+        {
+          "name": "host",
+          "description": "The host to connect to API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "path",
+          "description": "The path to query API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "headers",
+          "description": "Header connction to API Request",
+          "type": "object",
+          "default": "{}"
+        },
+        {
+          "name": "body",
+          "description": "Body connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "params",
+          "description": "Parameters connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "method",
+          "description": "Method of connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "host",
+          "attribute": "host",
+          "description": "The host to connect to API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "path",
+          "attribute": "path",
+          "description": "The path to query API.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "headers",
+          "attribute": "headers",
+          "description": "Header connction to API Request",
+          "type": "object",
+          "default": "{}"
+        },
+        {
+          "name": "body",
+          "attribute": "body",
+          "description": "Body connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "params",
+          "attribute": "params",
+          "description": "Parameters connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "method",
+          "attribute": "method",
+          "description": "Method of connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "events": [
+        {
+          "name": "returned-data"
+        },
+        {
+          "name": "returned-data-error"
+        }
+      ]
+    },
+    {
+      "name": "manager-controller",
+      "path": "./src/controllers/manager-controller/manager-controller.ts",
+      "description": "Manager-Controller\nController sent the data to app",
+      "attributes": [
+        {
+          "name": "host",
+          "description": "The host to connect to API.",
+          "type": "string",
+          "default": "\"https://www.breakingbadapi.com/api/\""
+        },
+        {
+          "name": "path",
+          "description": "The path to query API.",
+          "type": "string",
+          "default": "\"characters\""
+        },
+        {
+          "name": "headers",
+          "description": "Header connction to API Request",
+          "type": "object",
+          "default": "{}"
+        },
+        {
+          "name": "body",
+          "description": "Body connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "method",
+          "description": "Method of connection to API Request",
+          "type": "string",
+          "default": "\"GET\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "host",
+          "attribute": "host",
+          "description": "The host to connect to API.",
+          "type": "string",
+          "default": "\"https://www.breakingbadapi.com/api/\""
+        },
+        {
+          "name": "path",
+          "attribute": "path",
+          "description": "The path to query API.",
+          "type": "string",
+          "default": "\"characters\""
+        },
+        {
+          "name": "headers",
+          "attribute": "headers",
+          "description": "Header connction to API Request",
+          "type": "object",
+          "default": "{}"
+        },
+        {
+          "name": "body",
+          "attribute": "body",
+          "description": "Body connection to API Request",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "method",
+          "attribute": "method",
+          "description": "Method of connection to API Request",
+          "type": "string",
+          "default": "\"GET\""
+        }
+      ],
+      "events": [
+        {
+          "name": "data"
+        },
+        {
+          "name": "data-error"
+        }
+      ]
+    },
+    {
+      "name": "app-component",
+      "path": "./src/modules/app-component/app.component.ts",
+      "description": "App-Component\nComponent to link the controller and Components",
+      "attributes": [
+        {
+          "name": "data",
+          "description": "Data return of API",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "dataFiltered",
+          "description": "Data Filtered of Search",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "dataPage",
+          "description": "Data Elements of Pagination",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "showSpinner",
+          "description": "Show spinner of not",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "dataEventStatus",
+          "description": "Data event fired",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "errorEventStatus",
+          "description": "Error event fired",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "errorMessage",
+          "description": "Error message",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "data",
+          "attribute": "data",
+          "description": "Data return of API",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "dataFiltered",
+          "attribute": "dataFiltered",
+          "description": "Data Filtered of Search",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "dataPage",
+          "attribute": "dataPage",
+          "description": "Data Elements of Pagination",
+          "type": "DataModel[]",
+          "default": "[]"
+        },
+        {
+          "name": "showSpinner",
+          "attribute": "showSpinner",
+          "description": "Show spinner of not",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "dataEventStatus",
+          "attribute": "dataEventStatus",
+          "description": "Data event fired",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "errorEventStatus",
+          "attribute": "errorEventStatus",
+          "description": "Error event fired",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "errorMessage",
+          "attribute": "errorMessage",
+          "description": "Error message",
+          "type": "string",
+          "default": "\"\""
         }
       ]
     }

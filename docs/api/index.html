@@ -29,9 +29,10 @@
         
       <h1>API</h1>
       
-        <h2>&lt;my-element></h2>
+        <h2>&lt;card-profile></h2>
         <div>
-          An example element.
+          Card-Component
+Element showing pagination for elements
         </div>
         
     <h3>Attributes</h3>
@@ -41,11 +42,19 @@
       </tr>
       
         <tr>
-          <td>name</td><td>The name to say "Hello" to.</td><td>string</td><td>"World"</td>
+          <td>cardprofileData</td><td>Data of the card</td><td>undefined</td><td>undefined</td>
         </tr>
       
         <tr>
-          <td>count</td><td>The number of times the button has been clicked.</td><td>number</td><td>0</td>
+          <td>cardProfile</td><td>Id of the card</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>cardStatus</td><td>Status of card, if open is true</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>cardActive</td><td>Data to create the card</td><td>string</td><td>undefined</td>
         </tr>
       
     </table>
@@ -58,43 +67,649 @@
       </tr>
       
         <tr>
-          <td>name</td><td>name</td><td>The name to say "Hello" to.</td><td>string</td><td>"World"</td>
+          <td>cardprofileData</td><td>cardprofileData</td><td>Data of the card</td><td>undefined</td><td>undefined</td>
         </tr>
       
         <tr>
-          <td>count</td><td>count</td><td>The number of times the button has been clicked.</td><td>number</td><td>0</td>
+          <td>cardProfile</td><td>cardProfile</td><td>Id of the card</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>cardStatus</td><td>cardStatus</td><td>Status of card, if open is true</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>cardActive</td><td>cardActive</td><td>Data to create the card</td><td>string</td><td>undefined</td>
+        </tr>
+      
+    </table>
+    
+        
+        
+    <h3>Events</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th>
+      </tr>
+      
+        <tr>
+          <td>card-active</td><td>undefined</td>
+        </tr>
+      
+    </table>
+      
+          
+        
+        
+        
+        <h2>&lt;card-list></h2>
+        <div>
+          Card-List
+List of cards to show into app
+        </div>
+        
+    <h3>Attributes</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>isEmpty</td><td>Check if have data to load in de card profile</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>firstTime</td><td>Its the first time loaded</td><td>boolean</td><td>true</td>
+        </tr>
+      
+        <tr>
+          <td>cardActive</td><td>Card Id Active</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>cardlistData</td><td>Data to create the pagination</td><td>object[]</td><td>undefined</td>
+        </tr>
+      
+    </table>
+  
+        
+    <h3>Properties</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>isEmpty</td><td>isEmpty</td><td>Check if have data to load in de card profile</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>firstTime</td><td>firstTime</td><td>Its the first time loaded</td><td>boolean</td><td>true</td>
+        </tr>
+      
+        <tr>
+          <td>cardActive</td><td>cardActive</td><td>Card Id Active</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>cardlistData</td><td>cardlistData</td><td>Data to create the pagination</td><td>object[]</td><td>undefined</td>
         </tr>
       
     </table>
     
         
             
+          
         
-    <h3>Slots</h3>
+        
+        
+        <h2>&lt;header-component></h2>
+        <div>
+          Header-Component
+Header Component to show the logo
+        </div>
+        
+          
+        
+            
+          
+        
+        
+        
+        <h2>&lt;footer-component></h2>
+        <div>
+          Footer-Component
+Footer Component to show footer text
+        </div>
+        
+          
+        
+            
+          
+        
+        
+        
+        <h2>&lt;pagination-component></h2>
+        <div>
+          Pagination-Component
+Element showing pagination for elements
+        </div>
+        
+    <h3>Attributes</h3>
     <table>
       <tr>
-        <th>Name</th><th>Description</th>
+        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
       </tr>
       
         <tr>
-          <td></td><td>This element has a slot</td>
+          <td>pageLimit</td><td>Elements limit per page</td><td>number</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>numberElements</td><td>Total number of elements in the query</td><td>number</td><td>0</td>
+        </tr>
+      
+        <tr>
+          <td>activePageIndex</td><td>What is the page that is active</td><td>number</td><td>0</td>
+        </tr>
+      
+        <tr>
+          <td>numberPages</td><td>Array with the pages to show with information about each one</td><td>PageLinks[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>paginationData</td><td>Data to create the pagination</td><td>object[]</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>dataPage</td><td>Data to show per page</td><td>object[]</td><td>[]</td>
+        </tr>
+      
+    </table>
+  
+        
+    <h3>Properties</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>pageLimit</td><td>pageLimit</td><td>Elements limit per page</td><td>number</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>numberElements</td><td>numberElements</td><td>Total number of elements in the query</td><td>number</td><td>0</td>
+        </tr>
+      
+        <tr>
+          <td>activePageIndex</td><td>activePageIndex</td><td>What is the page that is active</td><td>number</td><td>0</td>
+        </tr>
+      
+        <tr>
+          <td>numberPages</td><td>numberPages</td><td>Array with the pages to show with information about each one</td><td>PageLinks[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>paginationData</td><td>paginationData</td><td>Data to create the pagination</td><td>object[]</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>dataPage</td><td>dataPage</td><td>Data to show per page</td><td>object[]</td><td>[]</td>
         </tr>
       
     </table>
     
         
-    <h3>CSS Shadow Parts</h3>
+        
+    <h3>Events</h3>
     <table>
       <tr>
         <th>Name</th><th>Description</th>
       </tr>
       
         <tr>
-          <td>button</td><td>The button</td>
+          <td>data-page</td><td>undefined</td>
+        </tr>
+      
+    </table>
+      
+          
+        
+        
+        
+        <h2>&lt;search-component></h2>
+        <div>
+          Search-Component
+Searcher to API
+        </div>
+        
+    <h3>Attributes</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>searchData</td><td>Data to search</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>valueToSearch</td><td>Value to search</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>filteredData</td><td>Array filtered data searched</td><td>object[]</td><td>[]</td>
         </tr>
       
     </table>
   
+        
+    <h3>Properties</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>searchData</td><td>searchData</td><td>Data to search</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>valueToSearch</td><td>valueToSearch</td><td>Value to search</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>filteredData</td><td>filteredData</td><td>Array filtered data searched</td><td>object[]</td><td>[]</td>
+        </tr>
+      
+    </table>
+    
+        
+        
+    <h3>Events</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th>
+      </tr>
+      
+        <tr>
+          <td>data-search</td><td>undefined</td>
+        </tr>
+      
+    </table>
+      
+          
+        
+        
+        
+        <h2>&lt;spinner-component></h2>
+        <div>
+          Spinner-Component
+Spinner show if data loading
+        </div>
+        
+          
+        
+            
+          
+        
+        
+        
+        <h2>&lt;data-provider-controller></h2>
+        <div>
+          Data-Provider
+Connect to the API and return the data
+        </div>
+        
+    <h3>Attributes</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>host</td><td>The host to connect to API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>path</td><td>The path to query API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>headers</td><td>Header connction to API Request</td><td>object</td><td>{}</td>
+        </tr>
+      
+        <tr>
+          <td>body</td><td>Body connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>params</td><td>Parameters connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>method</td><td>Method of connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+    </table>
+  
+        
+    <h3>Properties</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>host</td><td>host</td><td>The host to connect to API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>path</td><td>path</td><td>The path to query API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>headers</td><td>headers</td><td>Header connction to API Request</td><td>object</td><td>{}</td>
+        </tr>
+      
+        <tr>
+          <td>body</td><td>body</td><td>Body connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>params</td><td>params</td><td>Parameters connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>method</td><td>method</td><td>Method of connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+    </table>
+    
+        
+        
+    <h3>Events</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th>
+      </tr>
+      
+        <tr>
+          <td>request-success</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>request-error</td><td>undefined</td>
+        </tr>
+      
+    </table>
+      
+          
+        
+        
+        
+        <h2>&lt;data-manager-controller></h2>
+        <div>
+          Data-Manager-Controller
+Receive de data of data-provider-controller
+        </div>
+        
+    <h3>Attributes</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>host</td><td>The host to connect to API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>path</td><td>The path to query API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>headers</td><td>Header connction to API Request</td><td>object</td><td>{}</td>
+        </tr>
+      
+        <tr>
+          <td>body</td><td>Body connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>params</td><td>Parameters connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>method</td><td>Method of connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+    </table>
+  
+        
+    <h3>Properties</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>host</td><td>host</td><td>The host to connect to API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>path</td><td>path</td><td>The path to query API.</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>headers</td><td>headers</td><td>Header connction to API Request</td><td>object</td><td>{}</td>
+        </tr>
+      
+        <tr>
+          <td>body</td><td>body</td><td>Body connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>params</td><td>params</td><td>Parameters connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>method</td><td>method</td><td>Method of connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+    </table>
+    
+        
+        
+    <h3>Events</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th>
+      </tr>
+      
+        <tr>
+          <td>returned-data</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>returned-data-error</td><td>undefined</td>
+        </tr>
+      
+    </table>
+      
+          
+        
+        
+        
+        <h2>&lt;manager-controller></h2>
+        <div>
+          Manager-Controller
+Controller sent the data to app
+        </div>
+        
+    <h3>Attributes</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>host</td><td>The host to connect to API.</td><td>string</td><td>"https://www.breakingbadapi.com/api/"</td>
+        </tr>
+      
+        <tr>
+          <td>path</td><td>The path to query API.</td><td>string</td><td>"characters"</td>
+        </tr>
+      
+        <tr>
+          <td>headers</td><td>Header connction to API Request</td><td>object</td><td>{}</td>
+        </tr>
+      
+        <tr>
+          <td>body</td><td>Body connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>method</td><td>Method of connection to API Request</td><td>string</td><td>"GET"</td>
+        </tr>
+      
+    </table>
+  
+        
+    <h3>Properties</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>host</td><td>host</td><td>The host to connect to API.</td><td>string</td><td>"https://www.breakingbadapi.com/api/"</td>
+        </tr>
+      
+        <tr>
+          <td>path</td><td>path</td><td>The path to query API.</td><td>string</td><td>"characters"</td>
+        </tr>
+      
+        <tr>
+          <td>headers</td><td>headers</td><td>Header connction to API Request</td><td>object</td><td>{}</td>
+        </tr>
+      
+        <tr>
+          <td>body</td><td>body</td><td>Body connection to API Request</td><td>string</td><td>""</td>
+        </tr>
+      
+        <tr>
+          <td>method</td><td>method</td><td>Method of connection to API Request</td><td>string</td><td>"GET"</td>
+        </tr>
+      
+    </table>
+    
+        
+        
+    <h3>Events</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th>
+      </tr>
+      
+        <tr>
+          <td>data</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>data-error</td><td>undefined</td>
+        </tr>
+      
+    </table>
+      
+          
+        
+        
+        
+        <h2>&lt;app-component></h2>
+        <div>
+          App-Component
+Component to link the controller and Components
+        </div>
+        
+    <h3>Attributes</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>data</td><td>Data return of API</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>dataFiltered</td><td>Data Filtered of Search</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>dataPage</td><td>Data Elements of Pagination</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>showSpinner</td><td>Show spinner of not</td><td>boolean</td><td>true</td>
+        </tr>
+      
+        <tr>
+          <td>dataEventStatus</td><td>Data event fired</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>errorEventStatus</td><td>Error event fired</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>errorMessage</td><td>Error message</td><td>string</td><td>""</td>
+        </tr>
+      
+    </table>
+  
+        
+    <h3>Properties</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+      </tr>
+      
+        <tr>
+          <td>data</td><td>data</td><td>Data return of API</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>dataFiltered</td><td>dataFiltered</td><td>Data Filtered of Search</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>dataPage</td><td>dataPage</td><td>Data Elements of Pagination</td><td>DataModel[]</td><td>[]</td>
+        </tr>
+      
+        <tr>
+          <td>showSpinner</td><td>showSpinner</td><td>Show spinner of not</td><td>boolean</td><td>true</td>
+        </tr>
+      
+        <tr>
+          <td>dataEventStatus</td><td>dataEventStatus</td><td>Data event fired</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>errorEventStatus</td><td>errorEventStatus</td><td>Error event fired</td><td>boolean</td><td>false</td>
+        </tr>
+      
+        <tr>
+          <td>errorMessage</td><td>errorMessage</td><td>Error message</td><td>string</td><td>""</td>
+        </tr>
+      
+    </table>
+    
+        
+            
+          
+        
         
         
     

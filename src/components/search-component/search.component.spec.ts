@@ -67,6 +67,39 @@ suite('Search Component', () => {
     });
   });
 
+  describe('Search Input fires event', () => {
+    const callErrorDataSpy = sinon.spy();
+    let inputElement: any;
+    let inputHTML: any;
+
+    const fireInputEvent = () => {
+      console.log('adasds');
+      callErrorDataSpy();
+    };
+
+    beforeEach('', async () => {
+      inputElement = document.createElement('search-component');
+      /* istanbul ignore next */
+      document.querySelector('body')?.appendChild(inputElement);
+      await inputElement.updateComplete;
+      inputHTML = inputElement.shadowRoot.querySelector('input');
+      inputHTML.addEventListener('input', fireInputEvent);
+      inputHTML.dispatchEvent(new Event('input'));
+    });
+
+    afterEach('', () => {
+      sinon.restore();
+    });
+
+    it('Should be input contains HTML', async () => {
+      assert.notEqual(await inputHTML, null);
+    });
+
+    it('Should be input event fires', () => {
+      expect(callErrorDataSpy).to.be.calledTwice;
+    });
+  });
+
   describe('SearchData Values', () => {
     const el = new SearchComponent();
     el.searchData = MOCK_ARRAY;

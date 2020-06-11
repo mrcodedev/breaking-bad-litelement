@@ -77,7 +77,7 @@ export class CardListComponent extends LitElement {
   })
   set cardlistData(value: object[]) {
     const oldVal: object[] = this._cardlistData;
-
+    /* istanbul ignore if */
     if (value === undefined) {
       this._cardlistData = [];
     } else {
@@ -86,6 +86,7 @@ export class CardListComponent extends LitElement {
 
     this.requestUpdate('cardlistData', oldVal);
 
+    /* istanbul ignore else */
     if (oldVal !== value) {
       this.methodIsEmpty();
     }

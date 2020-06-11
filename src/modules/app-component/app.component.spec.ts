@@ -1,4 +1,3 @@
-import {ManagerController} from './../../controllers/manager-controller/manager-controller';
 import {AppComponent} from './app.component';
 import {fixture, html, expect} from '@open-wc/testing';
 

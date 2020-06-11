@@ -68,6 +68,7 @@ export class PaginationComponent extends LitElement {
    */
   @property({type: Number})
   set pageLimit(value) {
+    /* istanbul ignore else */
     if (value !== undefined && value > 0) {
       this._pageLimit = value;
     }
@@ -116,6 +117,7 @@ export class PaginationComponent extends LitElement {
     this._paginationData = value;
     this.requestUpdate('paginationData', oldVal);
 
+    /* istanbul ignore else */
     if (oldVal !== value && this.paginationData !== undefined) {
       this._updateDataPages();
     }
@@ -139,8 +141,7 @@ export class PaginationComponent extends LitElement {
   render() {
     return html`
       <div id="pagination" class="container-pagination">
-        ${this.generatePreviousActionHTML()}
-        ${this.numberPages ? this.generateLinkPagesHTML() : ''}
+        ${this.generatePreviousActionHTML()} ${this.generateLinkPagesHTML()}
         ${this.generateNextActionHTML()}
       </div>
     `;
@@ -286,6 +287,7 @@ export class PaginationComponent extends LitElement {
     }
 
     for (let i: number = firstElement; i <= lastElement; i++) {
+      /* istanbul ignore else */
       if (i < this.numberElements || this.pageLimit > this.numberElements) {
         this.dataPage.push(this.paginationData[i]);
       } else {

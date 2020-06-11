@@ -116,25 +116,23 @@ export class SearchComponent extends LitElement {
    * Filter the data and invocate the searchEvent
    */
   private _searchFilter(): void {
-    if (this.searchData.length > 0) {
-      this.filteredData = this.searchData.filter(
-        (search: DataModel) =>
-          search.name
-            .toLowerCase()
-            .includes(this.valueToSearch.toLocaleLowerCase()) ||
-          search.nickname
-            .toLowerCase()
-            .includes(this.valueToSearch.toLocaleLowerCase()) ||
-          search.playedBy
-            .toLowerCase()
-            .includes(this.valueToSearch.toLocaleLowerCase()) ||
-          search.status
-            .toLowerCase()
-            .includes(this.valueToSearch.toLocaleLowerCase())
-      );
+    this.filteredData = this.searchData.filter(
+      (search: DataModel) =>
+        search.name
+          .toLowerCase()
+          .includes(this.valueToSearch.toLocaleLowerCase()) ||
+        search.nickname
+          .toLowerCase()
+          .includes(this.valueToSearch.toLocaleLowerCase()) ||
+        search.playedBy
+          .toLowerCase()
+          .includes(this.valueToSearch.toLocaleLowerCase()) ||
+        search.status
+          .toLowerCase()
+          .includes(this.valueToSearch.toLocaleLowerCase())
+    );
 
-      this.searchEvent();
-    }
+    this.searchEvent();
   }
 
   /**

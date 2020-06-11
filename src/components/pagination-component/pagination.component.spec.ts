@@ -179,7 +179,6 @@ suite('Pagination Component', () => {
 
   describe('Data Pages values with else states', () => {
     const el = new PaginationComponent();
-
     describe('Else States', () => {
       const nextPageEvent = sinon.spy(el, 'nextPage');
       const previousPageEvent = sinon.spy(el, 'previousPage');
@@ -187,6 +186,7 @@ suite('Pagination Component', () => {
 
       el.paginationData = MOCK_DATA_API;
       el.pageLimit = 30;
+      el.render();
 
       describe('Launch method nextPage', () => {
         el.activePageIndex = 300;
@@ -211,6 +211,31 @@ suite('Pagination Component', () => {
           expect(changePageActiveEvent).to.be.calledOnce;
         });
       });
+    });
+  });
+
+  describe('Click event is fired', () => {
+    let clickElement: any;
+    let clickHTML: any;
+    let spyClickEvent: any;
+
+    beforeEach('', async () => {
+      clickElement = document.createElement('pagination-component');
+      /* istanbul ignore next */
+      document.querySelector('body')?.appendChild(clickElement);
+      clickElement.numberPages = NUMBER_PAGES_MOCK;
+      await clickElement.updateComplete;
+      clickHTML = clickElement.shadowRoot.querySelector('a[id="2"]');
+      spyClickEvent = sinon.spy(clickHTML, 'click');
+      clickHTML.click();
+    });
+
+    afterEach('', () => {
+      sinon.restore();
+    });
+
+    it('Should be clicked a page and fired event click', () => {
+      expect(spyClickEvent).to.be.calledOnce;
     });
   });
 });

@@ -142,8 +142,10 @@ suite('Card Profile Component', () => {
 
   describe('Component check values', () => {
     let clickElement: any;
+
     beforeEach('', async () => {
       clickElement = document.createElement('card-profile');
+      /* istanbul ignore next */
       document.querySelector('body')?.appendChild(clickElement);
       clickElement.cardprofileData = MOCK_API_CARD;
       clickElement.cardActive = '1';

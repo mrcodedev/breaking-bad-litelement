@@ -288,6 +288,7 @@ export class PaginationComponent extends LitElement {
 
     for (let i: number = firstElement; i <= lastElement; i++) {
       /* istanbul ignore else */
+      /* istanbul ignore next */
       if (i < this.numberElements || this.pageLimit > this.numberElements) {
         this.dataPage.push(this.paginationData[i]);
       } else {

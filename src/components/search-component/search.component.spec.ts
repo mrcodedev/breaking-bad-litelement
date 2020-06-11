@@ -73,7 +73,6 @@ suite('Search Component', () => {
     let inputHTML: any;
 
     const fireInputEvent = () => {
-      console.log('adasds');
       callErrorDataSpy();
     };
 
